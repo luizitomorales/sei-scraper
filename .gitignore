@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+#Pasta
+.ova/
+[lixeira]/
+.ipynb_checkpoints/
+
+# Virtualenv
+venv/
+.venv/
+env/
+
+# Dados sensíveis
+STAGE.env
+*.log
+downloads/
+
+# IDE
+.vscode/
+.idea/.
