@@ -21,7 +21,7 @@ import pandas as pd
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Carregar .env
-ENV_PATH = Path(r"C:\Users\luiz.smorais\Documents\MS\STAGE\STAGE.env")
+ENV_PATH = Path(r"STAGE.env")
 load_dotenv(dotenv_path=ENV_PATH)
 
 # --- SEI ---
