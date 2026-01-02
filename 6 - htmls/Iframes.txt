@@ -1,0 +1,1444 @@
+#### Frame do botão consultar andamento
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="pt-br" >
+<head >
+
+<link rel="shortcut icon" sizes="any" href="favicon/favicon.ico" />         
+<link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />         
+<link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" />
+<link rel="manifest" href="favicon/site.webmanifest" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<meta name="robots" content="noindex"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+<title>Sistema Único de Processo Eletrônico em Rede - Árvore Montar</title>
+<link href="/infra_css/infra-tooltip.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_css/infra-barra-progresso.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_css/infra-impressao-global.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="print"/>
+<link href="/infra_css/infra-ajax.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/calendario/v2/infra-calendario.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/arvore/infra-arvore.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/mapa/infra-mapa.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/jquery/jquery-ui-1.13.2/jquery-ui.min.css?1.13.2" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/jquery/jquery-ui-1.13.2/jquery-ui.structure.min.css?1.13.2" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/jquery/jquery-ui-1.13.2/jquery-ui.theme.min.css?1.13.2" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/multiple-select/multiple-select.min.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/modal/jquery.modalLink-1.0.0.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_css/bootstrap/bootstrap-4.6.2.min.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_css/bootstrap/menu-bootstrap.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_css/infra-global-esquema-3.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_css/esquemas/vermelho/infra-esquema-3.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>      
+<link href="css/infra-local-esquema-3.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<style></style><style type="text/css" >
+<!--/*--><![CDATA[/*><!--*/
+
+body{
+
+overflow:visible;
+}
+
+#header {
+margin:0 auto;
+height: 30px;
+width:100%;
+}
+
+#topmenu {
+height:20px;
+padding-top:.5em;
+}
+
+#container {
+width:100%;
+}
+
+#content {
+margin: 0 auto;
+}
+
+#divArvore {
+width:99%;
+padding-top:2px;
+}
+
+#divConsultarAndamento {
+width:99%;
+padding:1em 0.2em 1em 0.2em;
+margin-top:1em;
+border-top:.1em solid #b0b0b0;
+}
+
+#divConsultarAndamento a {
+text-decoration:none;
+font-size: .9rem;
+}
+
+#divConsultarAndamento img {
+vertical-align:middle;
+}
+
+#divRelacionados {
+width:99%;
+padding-top:1em;
+border-top:.1em solid #b0b0b0;
+}
+
+#divRelacionados label,
+#divRelacionadosParciais label,
+#divRelacionados a,
+#divRelacionadosParciais a  {
+font-size: .875rem;
+}
+
+#divRelacionados label{
+width:99%;
+}
+
+.divRelacionadosParcial{
+padding-left:2em;
+display:none;
+}
+
+a.ancoraRelacionadosParcial{
+padding-left:1.2em;
+text-decoration:none;
+color: black;
+}
+
+a.ancoraRelacionadosParcial:hover{
+text-decoration:underline;
+}
+
+.noVisitado {
+background-color:white;
+color:#0000cc;
+}
+
+.cardDeckRelacionado{
+  margin:5px 0;
+}
+.cardRelacionado{
+  border-color: #b0b0b0;
+  margin: 0 5px 10px 5px !important;
+  min-width: 220px;
+  max-width: 220px;
+}
+.cardTitleRelacionado{
+  margin-bottom: 0 !important;
+}
+.cardBodyRelacionado{
+  padding: .2rem .4rem;2.2rem
+}
+
+#aVisualizarDocumento{
+  display:none;
+  position: fixed;
+  bottom: 5px;
+  right: 10px;
+  z-index: 99;
+  border: 0;
+}
+
+#aVisualizarDocumento img{
+  height: 32px;
+}
+
+.popover-header{
+  display:none;
+}
+
+/*]]>*/-->
+</style>
+<script type="text/javascript" charset="iso-8859-1" src="js/popover/popper.min.js?4.1.5-2.29.0"></script>
+<script type="text/javascript">var INFRA_PATH_CSS="/infra_css",INFRA_PATH_IMAGENS="/infra_css/imagens",INFRA_PATH_JS="/infra_js",INFRA_PATH_SVG="/infra_css/svg",INFRA_LUPA_TIPO_JANELA=2,INFRA_BARRA_TIPO_JANELA=2,INFRA_TIPO_ALERTA=1;</script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/jquery/jquery-3.7.0.min.js?3.7.0"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/jquery/jquery-ui-1.13.2/jquery-ui.min.js?1.13.2"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/multiple-select/multiple-select.min.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/ddslick/jquery.ddslick.min.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/modal/jquery.modalLink-1.0.0.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraPaginaEsquema3.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraBotaoMenu.js?4.1.5-2.29.0"></script>    
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraUtil.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraCookie.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraUpload.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraTabelaDinamica.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraLupas.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraSelectEditavel.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraAjax.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraTooltip.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/calendario/v2/InfraCalendario.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/arvore/InfraArvore.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/maskedpwd/MaskedPassword.min.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/bootstrap/bootstrap-4.6.2.min.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/bootstrap/infra-menu-bootstrap.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/touch/jquery.ui.touch-punch.min.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/hotkeys/jquery.hotkeys.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="js/sei.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="js/clipboard/clipboard.min.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="js/arvore_montar.js?4.1.5-2.29.0"></script>
+
+<script type="text/javascript" charset="iso-8859-1" >
+<!--//--><![CDATA[//><!--
+
+
+  var objArvore = null;
+  var processandoPasta = false;
+  var processarIframe = false;
+  var ultimoSentido = 'P';
+  var linkArvoreNavegar = 'controlador.php?acao=arvore_navegar&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=ab166945a2bb15dcb5843be688ac4b278d39a29f55cbfbf84968f325167cd9b4';
+  var imgIconeRemover = '/infra_css/svg/remover.svg';
+  var imgIconeAguardar = '/infra_css/svg/aguarde.svg';
+
+
+ function inicializar(){
+
+    if (''=='1'){
+      parent.parent.document.location.href = 'controlador.php?acao=procedimento_controlar&acao_origem=procedimento_visualizar&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=3c66f7fd133103022035d3bd8fe6755e6e8dda621c721a8b27d4372f902a0127';
+    }
+
+    var Nos = Array();
+    var NosAcoes = Array();
+    var Pastas = Array();
+
+      Pastas[1] = [];
+  Pastas[1]['link'] = 'controlador.php?acao=procedimento_paginar&id_procedimento=35189454&id_unidade=110002528&flag_aberto=&flag_anexado=&flag_aberto_anexado=&flag_protocolo=1&flag_arquivo=&flag_tramitacao=1&flag_sobrestado=&flag_bloqueado=&flag_eliminado=&codigo_acesso=200&no_pai=PASTA1&pagina_hash=b01bd9521e28c35957e63d985d22b37b&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=856cbe01de86af05c9712ac9ca746b676ff8ae47021218b5a0753f314e908ad7';
+  Pastas[1]['protocolos'] = '32576796,32576809,32576822,32576843,32576850,32576890,32576945,32576962,32590107,32683163,32821595,32865612,33215448,33216502,33340215,33415719,33717475,33717497,33720676,33748538';
+
+  Pastas[2] = [];
+  Pastas[2]['link'] = 'controlador.php?acao=procedimento_paginar&id_procedimento=35189454&id_unidade=110002528&flag_aberto=&flag_anexado=&flag_aberto_anexado=&flag_protocolo=1&flag_arquivo=&flag_tramitacao=1&flag_sobrestado=&flag_bloqueado=&flag_eliminado=&codigo_acesso=200&no_pai=PASTA2&pagina_hash=3e6573c3ee02f8a50b134991b2fea2c6&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=3dc098785b5c1e9d3a9fd6189f4504de438289cdbddbbb33fb5bdfaf309ad149';
+  Pastas[2]['protocolos'] = '33755731,34030059,34165283,34165320,34338825,34456179,34456206,34751914,34751961,34752063,34752302,34898663,34898698,35086471,35191722,35191760,35266423,35794223,35842831,35843167';
+
+  Pastas[3] = [];
+  Pastas[3]['link'] = 'controlador.php?acao=procedimento_paginar&id_procedimento=35189454&id_unidade=110002528&flag_aberto=&flag_anexado=&flag_aberto_anexado=&flag_protocolo=1&flag_arquivo=&flag_tramitacao=1&flag_sobrestado=&flag_bloqueado=&flag_eliminado=&codigo_acesso=200&no_pai=PASTA3&pagina_hash=e0dc9eff39d67c1d6ac4060e3426ec14&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=a5610d5e0982d45fa15232a840792b06a4b09da79e53181740a68baf951ba68e';
+  Pastas[3]['protocolos'] = '35966978,35968100,35968328,35997729,35997762,35998420,35998470,36123394,36185246,36649237,36648550,36761417,36761800,36761832,36761911,36927642,36927731,36935880,36941207,37049133';
+
+  Pastas[4] = [];
+  Pastas[4]['link'] = 'controlador.php?acao=procedimento_paginar&id_procedimento=35189454&id_unidade=110002528&flag_aberto=&flag_anexado=&flag_aberto_anexado=&flag_protocolo=1&flag_arquivo=&flag_tramitacao=1&flag_sobrestado=&flag_bloqueado=&flag_eliminado=&codigo_acesso=200&no_pai=PASTA4&pagina_hash=fee7bff3eaf3d4756df242697951a416&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=2c37d0916dd97c9d906f89a4c466d687dccbd1219d001773e63478a568611f70';
+  Pastas[4]['protocolos'] = '37049240,37049293,37049324,37049340,37110261,37425505,37421228,37425913,37425972,37426022,37426189,37426217,37472803,37528161,37528754,37528777,37529141,37548821,37627510,37671484';
+
+  Pastas[5] = [];
+  Pastas[5]['link'] = 'controlador.php?acao=procedimento_paginar&id_procedimento=35189454&id_unidade=110002528&flag_aberto=&flag_anexado=&flag_aberto_anexado=&flag_protocolo=1&flag_arquivo=&flag_tramitacao=1&flag_sobrestado=&flag_bloqueado=&flag_eliminado=&codigo_acesso=200&no_pai=PASTA5&pagina_hash=8e991f407ba9605f891ca262e869942b&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=58212330a328ecd73ffab629d1c4e656053c8cf7a83eaf3167e4a2c5c07c05c5';
+  Pastas[5]['protocolos'] = '37679953,37706696,37710046,37717151,37717185,37841498,37841528,37841719,37843869,37844012,37907187,37949676,37949842,37977909,37993491,38017386,38017964,38053327,38200589,38200478';
+
+  Pastas[6] = [];
+  Pastas[6]['link'] = 'controlador.php?acao=procedimento_paginar&id_procedimento=35189454&id_unidade=110002528&flag_aberto=&flag_anexado=&flag_aberto_anexado=&flag_protocolo=1&flag_arquivo=&flag_tramitacao=1&flag_sobrestado=&flag_bloqueado=&flag_eliminado=&codigo_acesso=200&no_pai=PASTA6&pagina_hash=f0ac4df5c099d528a2738cd7253a106c&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=379011611ffac631a4efaf1f885fddf8c719a02014e9f40309f9109255ac694d';
+  Pastas[6]['protocolos'] = '38200511,38224855,38295347,38325001,40593555,41249680,40596645,40596696,40763987,40880115,41065257,41180935,41255143,41318849,41330672,41456020,41456064,41486071,41527574,41552228';
+
+  Pastas[7] = [];
+  Pastas[7]['link'] = 'controlador.php?acao=procedimento_paginar&id_procedimento=35189454&id_unidade=110002528&flag_aberto=&flag_anexado=&flag_aberto_anexado=&flag_protocolo=1&flag_arquivo=&flag_tramitacao=1&flag_sobrestado=&flag_bloqueado=&flag_eliminado=&codigo_acesso=200&no_pai=PASTA7&pagina_hash=573253ebd616bc5c8eab7b23006db3ee&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6a9c729efd9694b11103d020f6dbafabeb2bc84f7f7ecea784f15cba8080cbc';
+  Pastas[7]['protocolos'] = '41570888,41570988,41682647,41737469,41768541,42109593,42111902,42137354,42141644,42154132,42230820,42234169,42234463,42284341,42284361,42312267,42312289,42312435,42317155,42317166';
+
+  Pastas[8] = [];
+  Pastas[8]['link'] = 'controlador.php?acao=procedimento_paginar&id_procedimento=35189454&id_unidade=110002528&flag_aberto=&flag_anexado=&flag_aberto_anexado=&flag_protocolo=1&flag_arquivo=&flag_tramitacao=1&flag_sobrestado=&flag_bloqueado=&flag_eliminado=&codigo_acesso=200&no_pai=PASTA8&pagina_hash=85a4ad221c0c382945ffd460b5c64e97&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=84796b3ee72c985e778295631f2b1aa6d48102fae7d0098177fc2bd33bc87e62';
+  Pastas[8]['protocolos'] = '42338744,42338762,42338870,42338954,42365193,42365234,42385066,42392843,42454179,42413255,42575539,42591450,42591479,42583935,42588813,42589810,42412404,42677003,42677147,42677344';
+
+  Pastas[9] = [];
+  Pastas[9]['link'] = 'controlador.php?acao=procedimento_paginar&id_procedimento=35189454&id_unidade=110002528&flag_aberto=&flag_anexado=&flag_aberto_anexado=&flag_protocolo=1&flag_arquivo=&flag_tramitacao=1&flag_sobrestado=&flag_bloqueado=&flag_eliminado=&codigo_acesso=200&no_pai=PASTA9&pagina_hash=10e295dbbf0249c188142f588eaffe27&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=a1041ab7738d200895858a002611290b8a34fc0594f2f953414b6632f37a3aa4';
+  Pastas[9]['protocolos'] = '42677419,42734592,42734672,42735004,42735013,42760510,42785026,42790689,42790074,42794871,42985143,43028892,44775740,44855363,44888574,44956637,44956644,44974185,44978664,44985640';
+
+  Pastas[10] = [];
+  Pastas[10]['link'] = 'controlador.php?acao=procedimento_paginar&id_procedimento=35189454&id_unidade=110002528&flag_aberto=&flag_anexado=&flag_aberto_anexado=&flag_protocolo=1&flag_arquivo=&flag_tramitacao=1&flag_sobrestado=&flag_bloqueado=&flag_eliminado=&codigo_acesso=200&no_pai=PASTA10&pagina_hash=8af3a689f7c14cf865117cefaa85844d&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=c15ef5a768ba004364acf53cca4db51cf15088592ba693377cb62868595eb6da';
+  Pastas[10]['protocolos'] = '44985654,45923573,45923580,46945069,47032453,47039833,47039895,49382877,49382949,49384518,49453539,49467335,50422398,50467912,50452445,50538773,50538875,50542482';
+
+    
+
+
+//CA=200
+Nos[0] = new infraArvoreNo("PROCESSO","35189454",null,"controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=c08333c166d6f932286193708ddfd1da92fc36527f9908221051fdb289328add","ifrVisualizacao","25000.039367/2023-49","Atividade-Fim: Aquisição de Medicamento e Insumos em Saúde - Compra","svg/processo.svg?18","svg/processo.svg?18","svg/processo.svg?18",true,true,"noVisitado",null,"noVisitado","25000.039367/2023-49");
+Nos[0].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="451" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=procedimento_escolher_tipo_relacionado&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento_destino=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=e5de2097a6ca2c66fcf7199bfac70f0dccbf63cf5337fae1e6d5211c69ea2c02" tabindex="451" ><img  src="svg/processo_gerar_relacionado.svg?18" alt="Iniciar Processo Relacionado" title="Iniciar Processo Relacionado"/></a><a href="controlador.php?acao=procedimento_consultar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=51c46072c460529ae7d7bb74273cc506fc4766317156ca3e2bfc7ec6ddacf326" tabindex="451" ><img  src="svg/processo_alterar.svg?18" alt="Consultar Processo" title="Consultar Processo"/></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="451" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b02f1a695bde214f3b3fcb82d6433fff45504de26672314d3afd10ad797087fb" tabindex="451" ><img  src="svg/processo_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a href="controlador.php?acao=anotacao_registrar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=676c1126e98be9285e64f9769a5067574ce6e71183fe111698f98fa4281a9ae7" tabindex="451" ><img  src="svg/anotacao_cadastro.svg?18" alt="Anotações" title="Anotações" /></a><a href="controlador.php?acao=reabertura_programada_gerenciar&acao_origem=procedimento_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=106bfe069c1992e79f4dc1ba195cad4971f6c704cbe5c98269c14b0bb334740d" tabindex="451" ><img  src="svg/processo_reabertura_programada.svg?18" alt="Reabertura Programada do Processo" title="Reabertura Programada do Processo" /></a><a href="#" onclick="reabrirProcesso();" tabindex="451" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" /><a href="controlador.php?acao=procedimento_gerar_pdf&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=136fccd70c3db229126bf6f05cd226527a64dfb918f69d750d54247394fe689c" tabindex="451" ><img  src="svg/processo_gerar_pdf.svg?18" alt="Gerar Arquivo PDF do Processo" title="Gerar Arquivo PDF do Processo"/></a><a href="controlador.php?acao=procedimento_gerar_zip&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=fe41aca975da1188ea6452f6901f110ef2b680d882f487b3551db758e78be00c" tabindex="451" ><img  src="svg/processo_gerar_zip.svg?18" alt="Gerar Arquivo ZIP do Processo" title="Gerar Arquivo ZIP do Processo"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=a8baca19c642f509ed85166986193b23d90f88f3f219a56dc486c26eaf9a2a92" tabindex="451" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="parent.parent.document.location.href=\'controlador.php?acao=procedimento_controlar&acao_origem=procedimento_visualizar&acao_retorno=principal&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=61b47386d87831f23da1eb4e5e838374199b717be611b3ce775f0ad3d8b2cd1e#ID-35189454\';" tabindex="451" ><img  src="svg/controle_processos.svg?18" alt="Controle de Processos" title="Controle de Processos" /></a><a href="controlador.php?acao=procedimento_pesquisar&acao_origem=procedimento_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=28d5fe268902e08667a40078d335d6c86f9af9848c6cb6dd6d44079d2b4e2403" tabindex="451" ><img  src="svg/processo_pesquisar.svg?18" alt="Pesquisar no Processo" title="Pesquisar no Processo" /></a>';
+Nos[0].src = '';
+Nos[0].html = 'Processo não possui andamentos abertos.<br />';Nos[1] = new infraArvoreNo("PASTA","PASTA1","35189454","javascript:abrirFecharPasta('PASTA1');",null,"I","Pasta I (1)",null,"svg/processo_aberto.svg?18","svg/processo_fechado.svg?18",false,true,null,null,null);
+Nos[1].carregado = false;
+Nos[2] = new infraArvoreNo("AGUARDE","AGUARDE1","PASTA1",null,null,"Aguarde...","Aguarde...","/infra_css/svg/aguarde.svg",null,null,false,true,null,null,null);
+Nos[3] = new infraArvoreNo("PASTA","PASTA2","35189454","javascript:abrirFecharPasta('PASTA2');",null,"II","Pasta II (2)",null,"svg/processo_aberto.svg?18","svg/processo_fechado.svg?18",false,true,null,null,null);
+Nos[3].carregado = false;
+Nos[4] = new infraArvoreNo("AGUARDE","AGUARDE2","PASTA2",null,null,"Aguarde...","Aguarde...","/infra_css/svg/aguarde.svg",null,null,false,true,null,null,null);
+Nos[5] = new infraArvoreNo("PASTA","PASTA3","35189454","javascript:abrirFecharPasta('PASTA3');",null,"III","Pasta III (3)",null,"svg/processo_aberto.svg?18","svg/processo_fechado.svg?18",false,true,null,null,null);
+Nos[5].carregado = false;
+Nos[6] = new infraArvoreNo("AGUARDE","AGUARDE3","PASTA3",null,null,"Aguarde...","Aguarde...","/infra_css/svg/aguarde.svg",null,null,false,true,null,null,null);
+Nos[7] = new infraArvoreNo("PASTA","PASTA4","35189454","javascript:abrirFecharPasta('PASTA4');",null,"IV","Pasta IV (4)",null,"svg/processo_aberto.svg?18","svg/processo_fechado.svg?18",false,true,null,null,null);
+Nos[7].carregado = false;
+Nos[8] = new infraArvoreNo("AGUARDE","AGUARDE4","PASTA4",null,null,"Aguarde...","Aguarde...","/infra_css/svg/aguarde.svg",null,null,false,true,null,null,null);
+Nos[9] = new infraArvoreNo("PASTA","PASTA5","35189454","javascript:abrirFecharPasta('PASTA5');",null,"V","Pasta V (5)",null,"svg/processo_aberto.svg?18","svg/processo_fechado.svg?18",false,true,null,null,null);
+Nos[9].carregado = false;
+Nos[10] = new infraArvoreNo("AGUARDE","AGUARDE5","PASTA5",null,null,"Aguarde...","Aguarde...","/infra_css/svg/aguarde.svg",null,null,false,true,null,null,null);
+Nos[11] = new infraArvoreNo("PASTA","PASTA6","35189454","javascript:abrirFecharPasta('PASTA6');",null,"VI","Pasta VI (6)",null,"svg/processo_aberto.svg?18","svg/processo_fechado.svg?18",false,true,null,null,null);
+Nos[11].carregado = false;
+Nos[12] = new infraArvoreNo("AGUARDE","AGUARDE6","PASTA6",null,null,"Aguarde...","Aguarde...","/infra_css/svg/aguarde.svg",null,null,false,true,null,null,null);
+Nos[13] = new infraArvoreNo("PASTA","PASTA7","35189454","javascript:abrirFecharPasta('PASTA7');",null,"VII","Pasta VII (7)",null,"svg/processo_aberto.svg?18","svg/processo_fechado.svg?18",false,true,null,null,null);
+Nos[13].carregado = false;
+Nos[14] = new infraArvoreNo("AGUARDE","AGUARDE7","PASTA7",null,null,"Aguarde...","Aguarde...","/infra_css/svg/aguarde.svg",null,null,false,true,null,null,null);
+Nos[15] = new infraArvoreNo("PASTA","PASTA8","35189454","javascript:abrirFecharPasta('PASTA8');",null,"VIII","Pasta VIII (8)",null,"svg/processo_aberto.svg?18","svg/processo_fechado.svg?18",false,true,null,null,null);
+Nos[15].carregado = false;
+Nos[16] = new infraArvoreNo("AGUARDE","AGUARDE8","PASTA8",null,null,"Aguarde...","Aguarde...","/infra_css/svg/aguarde.svg",null,null,false,true,null,null,null);
+Nos[17] = new infraArvoreNo("PASTA","PASTA9","35189454","javascript:abrirFecharPasta('PASTA9');",null,"IX","Pasta IX (9)",null,"svg/processo_aberto.svg?18","svg/processo_fechado.svg?18",false,true,null,null,null);
+Nos[17].carregado = false;
+Nos[18] = new infraArvoreNo("AGUARDE","AGUARDE9","PASTA9",null,null,"Aguarde...","Aguarde...","/infra_css/svg/aguarde.svg",null,null,false,true,null,null,null);
+Nos[19] = new infraArvoreNo("PASTA","PASTA10","35189454","javascript:abrirFecharPasta('PASTA10');",null,"X","Pasta X (10)",null,"svg/processo_aberto.svg?18","svg/processo_fechado.svg?18",true,true,null,null,null);
+Nos[19].carregado = true;
+
+
+//CA=230
+Nos[20] = new infraArvoreNo("DOCUMENTO","48225415","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=48225415&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=7d29dce42c63e1e65e5d0ff03c66044f522a67fb39c80106d71118a5d331b825","ifrConteudoVisualizacao","Despacho 0044891390","Despacho 0044891390","svg/documento_interno.svg?18","svg/documento_interno.svg?18","svg/documento_interno.svg?18",true,true,null,null,"noVisitado","0044891390");
+Nos[20].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=48225415&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=5651ab2fa109757dcd56b50d45e2955e17deb383ca1d7f1c3fde2b3e523183f0" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento" title="Consultar Documento" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=48225415&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=ffcaaa2b9abb4bf10ebf69a4856feccece7d8f10bad9192f0fe11db5ce7f7462" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a target="_blank" href="controlador.php?acao=documento_imprimir_web&acao_origem=arvore_visualizar&id_documento=48225415&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=173d56eda534cc574d05a1cbf25c03dd4e0ab320dd9aca17c9130cc050af686b" tabindex="452" ><img  src="svg/documento_imprimir.svg?18" alt="Imprimir Web" title="Imprimir Web" /></a><a href="controlador.php?acao=procedimento_gerar_pdf&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=48225415&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=22af9d80beab1c023b57ff628ca543cdee7248fbe026cb215810d04b6901f614" tabindex="452" ><img  src="svg/documento_gerar_pdf.svg?18" alt="Gerar Arquivo PDF do Documento" title="Gerar Arquivo PDF do Documento"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=44985654&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=c943375b907239ad71b5ad67d69cdf00463cc0f549d946a77c1dd6489cb6c7af" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[20].src = 'controlador.php?acao=documento_visualizar&acao_origem=procedimento_visualizar&id_documento=48225415&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=6b6460ae7016e3096ee6b3df427aec99d8c53da7cd2b6c2945f1879e094ac4ad';
+Nos[20].html = '';
+
+
+//CA=210
+Nos[21] = new infraArvoreNo("DOCUMENTO","49204487","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=49204487&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=74523f9e939e2262800099bc6d35404a30f3014d7724680ac12bb742e181e09a","ifrConteudoVisualizacao","E-mail Antecipação Fator I (0045816574)","E-mail Antecipação Fator I (0045816574)","svg/documento_pdf.svg?18","svg/documento_pdf.svg?18","svg/documento_pdf.svg?18",true,true,null,null,"noVisitado","0045816574");
+Nos[21].assinatura = '';
+Nos[21].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar_recebido&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=49204487&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=d9975df0ae378cd3c487b7fc101d90e78d0d7eece6a686318b0048b3c6b21940" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento Externo" title="Consultar Documento Externo" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=49204487&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8bf3b8aa4e9a814b91524f82aab1778c594f3af7d4e638ddb74cfc6f4bf045f6" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=45923573&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=efec5f8908c7eb79ea35e8db4f1f81ae4b29e7b64561a3f43bf09ea30219ad10" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[21].src = 'controlador.php?acao=documento_download_anexo&acao_origem=procedimento_visualizar&id_anexo=26841416&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=9a85303c4d4564dcec328488e23bd048712e946e4caec2cc6aac1f77ab2e823a';
+Nos[21].html = 'Clique <a href="controlador.php?acao=documento_download_anexo&acao_origem=procedimento_visualizar&id_anexo=26841416&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=2073c21e8df31c70080242251f879664cf62ab13ef19ab8895f09e306c3403d0" target="_blank" class="ancoraVisualizacaoArvore">aqui</a> para visualizar o conteúdo deste documento em uma nova janela.';
+
+
+//CA=210
+Nos[22] = new infraArvoreNo("DOCUMENTO","49204495","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=49204495&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=ed0768d7574865d1ffb3b5136861f5550b494c72db82c3ca87b168cb970a64fd","ifrConteudoVisualizacao","Anexo Ocorrência parcela única (0045816582)","Anexo Ocorrência parcela única (0045816582)","svg/documento_pdf.svg?18","svg/documento_pdf.svg?18","svg/documento_pdf.svg?18",true,true,null,null,"noVisitado","0045816582");
+Nos[22].assinatura = '';
+Nos[22].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar_recebido&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=49204495&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=053ea26bbcdedbc010b5f62641b0edca34840f0ab9da003ab6850dbf96eb09b8" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento Externo" title="Consultar Documento Externo" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=49204495&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=75624480273687bbb8a023b9c36191a2e6dfd49afbfdfc493ce870faa193334b" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=45923580&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=a5498b18de1d2b889323fbcf4033efa304948780d553a3a00ab538bf29faeb84" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[22].src = 'controlador.php?acao=documento_download_anexo&acao_origem=procedimento_visualizar&id_anexo=26841422&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=aad5496f62d4266495d7e0dff2b8e17f596a7879a20bd90fc6bcec785f995684';
+Nos[22].html = 'Clique <a href="controlador.php?acao=documento_download_anexo&acao_origem=procedimento_visualizar&id_anexo=26841422&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=bfc554385ab219ec9266455c152c52d89bb0daca87b8218b7c093436baac7882" target="_blank" class="ancoraVisualizacaoArvore">aqui</a> para visualizar o conteúdo deste documento em uma nova janela.';
+
+
+//CA=230
+Nos[23] = new infraArvoreNo("DOCUMENTO","50273205","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=50273205&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=f6a2f4a64f21e3fc88712f377b7397fde93769cfca8a2e2d3b1982036237839d","ifrConteudoVisualizacao","Despacho 0046824826","Despacho 0046824826","svg/documento_interno.svg?18","svg/documento_interno.svg?18","svg/documento_interno.svg?18",true,true,null,null,"noVisitado","0046824826");
+Nos[23].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=50273205&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=e7b347b985c30418ff9ffb742c124cd13815ea597f9bc6be7e09063ff6c432bc" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento" title="Consultar Documento" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=50273205&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=7c225d4b440f042555dc987f8b0f8d006587d3af494b520f7c32c91e3b28997f" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a target="_blank" href="controlador.php?acao=documento_imprimir_web&acao_origem=arvore_visualizar&id_documento=50273205&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=1747f8babb90111aab1ff9942ff784e8dd85ab5a0ff616959b1914d2fcb84ab9" tabindex="452" ><img  src="svg/documento_imprimir.svg?18" alt="Imprimir Web" title="Imprimir Web" /></a><a href="controlador.php?acao=procedimento_gerar_pdf&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=50273205&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=053f0de016fd5faa56e283f4ca152fee1a1cdc206fcc73118b5886fc76e2bd8c" tabindex="452" ><img  src="svg/documento_gerar_pdf.svg?18" alt="Gerar Arquivo PDF do Documento" title="Gerar Arquivo PDF do Documento"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=46945069&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=26a02ead2c5d4bd3e6e1dc3da707337eea6104faff959cd0ee28445ec647b92f" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[23].src = 'controlador.php?acao=documento_visualizar&acao_origem=procedimento_visualizar&id_documento=50273205&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=f2937c0e074d1bcef387011a5631a7d2645132c97f1e2eb8632a5b8f2ca92d7a';
+Nos[23].html = '';
+
+
+//CA=210
+Nos[24] = new infraArvoreNo("DOCUMENTO","50364408","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=50364408&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=80e0da40bfbf9f487c3578ee4239895916242e7ef236a31bd61cdc9d6c35ae9f","ifrConteudoVisualizacao","Portaria 177/2025 - CT 339/2023 (0046910914)","Portaria 177/2025 - CT 339/2023 (0046910914)","svg/documento_pdf.svg?18","svg/documento_pdf.svg?18","svg/documento_pdf.svg?18",true,true,null,null,"noVisitado","0046910914");
+Nos[24].assinatura = '';
+Nos[24].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar_recebido&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=50364408&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=68473ef97edccd154aa861cc4be7d18653c5ec0d75a0d847a9cdd7b111f782d8" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento Externo" title="Consultar Documento Externo" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=50364408&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=3785ed8ed95658848be24abba77c52c65d45f7042ad5f2a9a6f16bfe05f310f0" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=47032453&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=ac495868273a283cc31d67d1dd1549e2c27af66b69a81a5e56dac631aa085723" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[24].src = 'controlador.php?acao=documento_download_anexo&acao_origem=procedimento_visualizar&id_anexo=27542143&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=6ba3ce7d596ef3ec06b83899aeb64e9a8a75c9e2984f39ddb16055cbdbaba4cd';
+Nos[24].html = 'Clique <a href="controlador.php?acao=documento_download_anexo&acao_origem=procedimento_visualizar&id_anexo=27542143&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=05e7bae21d5ea7eeedfd6e6ab3abebe53519eb17c34df4a8580b303996ab4294" target="_blank" class="ancoraVisualizacaoArvore">aqui</a> para visualizar o conteúdo deste documento em uma nova janela.';
+
+
+//CA=210
+Nos[25] = new infraArvoreNo("DOCUMENTO","50372084","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=50372084&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=5f536b0885916a38f497e0c928ab87036193f408a963cf92a6939e2d84ecb94b","ifrConteudoVisualizacao","Boletim de Serviço do Ministério da Saúde - 3 (0046918151)","Boletim de Serviço do Ministério da Saúde - 3 (0046918151)","svg/documento_pdf.svg?18","svg/documento_pdf.svg?18","svg/documento_pdf.svg?18",true,true,null,null,"noVisitado","0046918151");
+Nos[25].assinatura = '';
+Nos[25].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar_recebido&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=50372084&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=d8805ecffa115c13db8023ddcf239a49cb3e136ae0fd9fa6906c332a1293a90a" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento Externo" title="Consultar Documento Externo" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=50372084&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=16ca334cc957f331fb9a5e7bf6fdcc6a4f7c47258ae6890b8963f377d526dc70" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=47039833&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=0fdefcbb3c3ff2575ce27005a29164f6610af66fd83859ff50435e9eabcea939" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[25].src = 'controlador.php?acao=documento_download_anexo&acao_origem=procedimento_visualizar&id_anexo=27546938&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b51e10dbfc7c25314ad5bbbb39e0efcfcd3d7a54a20097e13e7d8a9631940567';
+Nos[25].html = 'Clique <a href="controlador.php?acao=documento_download_anexo&acao_origem=procedimento_visualizar&id_anexo=27546938&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=f254638ab57a03cf9165a41f9842f9f813c3bd43349a52f506d14d4f21065dff" target="_blank" class="ancoraVisualizacaoArvore">aqui</a> para visualizar o conteúdo deste documento em uma nova janela.';
+
+
+//CA=230
+Nos[26] = new infraArvoreNo("DOCUMENTO","50372154","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=50372154&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=fc4204b427741b4b4e9b086395b96e46c394c0fc8862ad15a2176637aa02d230","ifrConteudoVisualizacao","Despacho 0046918213","Despacho 0046918213","svg/documento_interno.svg?18","svg/documento_interno.svg?18","svg/documento_interno.svg?18",true,true,null,null,"noVisitado","0046918213");
+Nos[26].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=50372154&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=afe3ffc0d52d74ac50a48021c9abf7b9c07df4fa4ed87efaef3534af59b1dfec" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento" title="Consultar Documento" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=50372154&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=3bbf7407a50e22e0bf16535a4122343767d11ecda09b5139d530156df6cdc788" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a target="_blank" href="controlador.php?acao=documento_imprimir_web&acao_origem=arvore_visualizar&id_documento=50372154&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=05148eafa83daf164ef406f24ea7861d22b97e55c476ba22db285ec0f92e8c2e" tabindex="452" ><img  src="svg/documento_imprimir.svg?18" alt="Imprimir Web" title="Imprimir Web" /></a><a href="controlador.php?acao=procedimento_gerar_pdf&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=50372154&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=733e0d5b273066bea533f30de601bf5d0235731e2558187adb565c4a3345946e" tabindex="452" ><img  src="svg/documento_gerar_pdf.svg?18" alt="Gerar Arquivo PDF do Documento" title="Gerar Arquivo PDF do Documento"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=47039895&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=2caca5e98e6e98823a035538d72fe3a9a7ab77bf43afd9eed8e9cc0ebdc8fd7a" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[26].src = 'controlador.php?acao=documento_visualizar&acao_origem=procedimento_visualizar&id_documento=50372154&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=241b872a06128134698a8fffa9d20ee040ea59a2de090d281477dbdaad0e9c96';
+Nos[26].html = '';
+
+
+//CA=230
+Nos[27] = new infraArvoreNo("DOCUMENTO","52830922","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=52830922&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=a3bb9c6ceeb1bda4769c3aa66f8eec3c7f1ce380394a5cf0ed7271867fcf4fa8","ifrConteudoVisualizacao","Despacho 0049233693","Despacho 0049233693","svg/documento_interno.svg?18","svg/documento_interno.svg?18","svg/documento_interno.svg?18",true,true,null,null,"noVisitado","0049233693");
+Nos[27].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=52830922&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=f90d92e5635fb4ee2ab773dcf0ed3885546f0ae03633838948a6796d25046e2b" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento" title="Consultar Documento" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=52830922&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=cfb9be07eeca951770148f13f6d362f2a0ca1b1a87e4dfc7f5b6e103386b6300" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a target="_blank" href="controlador.php?acao=documento_imprimir_web&acao_origem=arvore_visualizar&id_documento=52830922&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=a88cc147b683c0cc4ceca871ea5d70d2aa434d99421fa31bd79e3ddd2d804f7b" tabindex="452" ><img  src="svg/documento_imprimir.svg?18" alt="Imprimir Web" title="Imprimir Web" /></a><a href="controlador.php?acao=procedimento_gerar_pdf&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=52830922&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=231c9cd6aa25b064b04128934168418c8907f8b72c6b594faf9e005f30ca5f3c" tabindex="452" ><img  src="svg/documento_gerar_pdf.svg?18" alt="Gerar Arquivo PDF do Documento" title="Gerar Arquivo PDF do Documento"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=49382877&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=1a98f6fafcf4d3a38555f9cb9ff9388d43528a149ddf2ff347192a03805bdfa8" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[27].src = 'controlador.php?acao=documento_visualizar&acao_origem=procedimento_visualizar&id_documento=52830922&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=353346e250131cb92fc9fe2ca7e9a8c6b1c935018284185d51b33de3f7a16905';
+Nos[27].html = '';
+
+
+//CA=230
+Nos[28] = new infraArvoreNo("DOCUMENTO","52830996","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=52830996&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=a575bb655f57005e5fb0501a6b0dcadbdef8400e1591eb74c919f3c639764639","ifrConteudoVisualizacao","Nota Técnica 58 (0049233765)","Nota Técnica 58 (0049233765)","svg/documento_interno.svg?18","svg/documento_interno.svg?18","svg/documento_interno.svg?18",true,true,null,null,"noVisitado","0049233765");
+Nos[28].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=52830996&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=82d0bd818de07671bfe5a80d640abda7e3978febeb91c35d23ae27c4e89b5b48" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento" title="Consultar Documento" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=52830996&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=646d03f35e0cccde310763bc90425ab4ed42edb9b3406da56e8fa669e2803f00" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a target="_blank" href="controlador.php?acao=documento_imprimir_web&acao_origem=arvore_visualizar&id_documento=52830996&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=c71d2efd6ba9dda33efd794a2cfeb4f42e92586ce1ac414ae8a1bfcd8c3df45f" tabindex="452" ><img  src="svg/documento_imprimir.svg?18" alt="Imprimir Web" title="Imprimir Web" /></a><a href="controlador.php?acao=procedimento_gerar_pdf&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=52830996&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=266e5e5097a1199864b0761e0d643c39c78d02c203dd274047b47030c920e4d3" tabindex="452" ><img  src="svg/documento_gerar_pdf.svg?18" alt="Gerar Arquivo PDF do Documento" title="Gerar Arquivo PDF do Documento"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=49382949&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=9ba02a1e497b72f9d29017c7cbef3684b9cdf2e7f1673418be31b0457017f82e" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[28].src = 'controlador.php?acao=documento_visualizar&acao_origem=procedimento_visualizar&id_documento=52830996&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=651c482d814bd07f97ae1ce060b3b49fafe58ae556845ae1c99fa81c94e5d6a1';
+Nos[28].html = '';
+
+
+//CA=210
+Nos[29] = new infraArvoreNo("DOCUMENTO","52832621","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=52832621&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=73db5ade595f76057b1b432a8c66de2ac0fdb97df696a2db07d653a3fa28b253","ifrConteudoVisualizacao","Relatório SEI_0045714281_ 2º TA CT 339-2023_Fibrino (0049235315)","Relatório SEI_0045714281_ 2º TA CT 339-2023_Fibrino (0049235315)","svg/documento_pdf.svg?18","svg/documento_pdf.svg?18","svg/documento_pdf.svg?18",true,true,null,null,"noVisitado","0049235315");
+Nos[29].assinatura = '';
+Nos[29].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar_recebido&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=52832621&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=ee33360b65c3e0146f8068fe67673474a0065f1bd62d6452a2ea654f3f5285f4" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento Externo" title="Consultar Documento Externo" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=52832621&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=7ca1c2d7d3434403eddc85063592af6ede6c02fd2528c57c7d0fc9a8f5c2618e" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=49384518&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=fa6f620be7b159f2c296279de880c2155f2b77d5918a97cbe78d25185e207b13" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[29].src = 'controlador.php?acao=documento_download_anexo&acao_origem=procedimento_visualizar&id_anexo=29024835&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=35e0a7fa8eac81484c13cb1a0f4441737eb460a61d4c56e5e606e9f6cb7a8743';
+Nos[29].html = 'Clique <a href="controlador.php?acao=documento_download_anexo&acao_origem=procedimento_visualizar&id_anexo=29024835&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=ba3e5a5f8f85705a8298eabf0e0cebbbd45b87819aa55690b0f4e685a0b872f1" target="_blank" class="ancoraVisualizacaoArvore">aqui</a> para visualizar o conteúdo deste documento em uma nova janela.';
+
+
+//CA=230
+Nos[30] = new infraArvoreNo("DOCUMENTO","52904748","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=52904748&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=5df4ca2b4e8d6c2222130ccd4792d30f2707cebc38b55d4f59d489cf1ba78873","ifrConteudoVisualizacao","Despacho 0049303568","Despacho 0049303568","svg/documento_interno.svg?18","svg/documento_interno.svg?18","svg/documento_interno.svg?18",true,true,null,null,"noVisitado","0049303568");
+Nos[30].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=52904748&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=156b5ad63e0fbe48a0fadd1702e04bf029200fc64eafccd250ba29d8364577f7" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento" title="Consultar Documento" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=52904748&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=07469bf98a8458d7afe83d6a883c0b395eba7263c9c6e4fd569f3252782bcf2b" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a target="_blank" href="controlador.php?acao=documento_imprimir_web&acao_origem=arvore_visualizar&id_documento=52904748&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=9acca322a07873689221f7355b172c2bdb249d81e2a5cec7a5fc943a2ca0fe3d" tabindex="452" ><img  src="svg/documento_imprimir.svg?18" alt="Imprimir Web" title="Imprimir Web" /></a><a href="controlador.php?acao=procedimento_gerar_pdf&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=52904748&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=a4fd38f6499ca20cd6301b709d3a904399133e8dd51ef0f7d18daf043deb2da5" tabindex="452" ><img  src="svg/documento_gerar_pdf.svg?18" alt="Gerar Arquivo PDF do Documento" title="Gerar Arquivo PDF do Documento"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=49453539&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=519072edf7b3570f150d08c994dc77d920751597e79754b13fcb5c68dea6cf51" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[30].src = 'controlador.php?acao=documento_visualizar&acao_origem=procedimento_visualizar&id_documento=52904748&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=6f20885e63325f1d6a05b0f6883bc88fe5ea845fcfa857a7efa291bbcd11375b';
+Nos[30].html = '';
+
+
+//CA=230
+Nos[31] = new infraArvoreNo("DOCUMENTO","52919075","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=52919075&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b22dc0b1b3bd6e4d1142c950cfe84537d4dc0936b02d5aacbff99c5e081edc41","ifrConteudoVisualizacao","Despacho 0049317081","Despacho 0049317081","svg/documento_interno.svg?18","svg/documento_interno.svg?18","svg/documento_interno.svg?18",true,true,null,null,"noVisitado","0049317081");
+Nos[31].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=52919075&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=9ab5c535859bb8f23f0f8f768494f0f1d11894c213163da6d53b179a5b5802e4" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento" title="Consultar Documento" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=52919075&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=fd547a6e9655eebc8dd8a55e9e4405709a0be5249c2d1f2640242517b0fa8ee6" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a target="_blank" href="controlador.php?acao=documento_imprimir_web&acao_origem=arvore_visualizar&id_documento=52919075&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=d5d185eb6951159ff0fb5a8a3734f5ac47d05eb8fc0cf505e42f158420673cd0" tabindex="452" ><img  src="svg/documento_imprimir.svg?18" alt="Imprimir Web" title="Imprimir Web" /></a><a href="controlador.php?acao=procedimento_gerar_pdf&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=52919075&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=7328f88e0bfd8603dfc5a8ed49693c6e4b9bb014a81b8ee92766627d083db8e8" tabindex="452" ><img  src="svg/documento_gerar_pdf.svg?18" alt="Gerar Arquivo PDF do Documento" title="Gerar Arquivo PDF do Documento"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=49467335&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=6d119248f2f2a22f8fa9fc53e3ddb6e849fbaebbe974663f7382bbeef7f0ca65" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[31].src = 'controlador.php?acao=documento_visualizar&acao_origem=procedimento_visualizar&id_documento=52919075&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=40c89773784987dd1b91a7ecaa75f05cc3ead6eff0ade45bdf00351a8f626883';
+Nos[31].html = '';
+
+
+//CA=230
+Nos[32] = new infraArvoreNo("DOCUMENTO","53918628","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=53918628&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b4918bb5e7ed1267e01565c0841594a75aec07182fea0c7ea3dc39655422244a","ifrConteudoVisualizacao","Ofício 600 (0050261672)","Ofício 600 (0050261672)","svg/documento_interno.svg?18","svg/documento_interno.svg?18","svg/documento_interno.svg?18",true,true,null,null,"noVisitado","0050261672");
+Nos[32].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=53918628&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=fce93377ab064beea5344a27337f5715f516e2d7d7c8a62ecbba151ccdf7fe00" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento" title="Consultar Documento" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=53918628&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=767abe372f7a9b5dedb726dcbae07d5f75bf7d773210c59503438e66b1264fbc" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a target="_blank" href="controlador.php?acao=documento_imprimir_web&acao_origem=arvore_visualizar&id_documento=53918628&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=ac226ac3c6b3f55f0d56d16673048dc317dbcaed5083f78b75ce050b939bef89" tabindex="452" ><img  src="svg/documento_imprimir.svg?18" alt="Imprimir Web" title="Imprimir Web" /></a><a href="controlador.php?acao=procedimento_gerar_pdf&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=53918628&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=9ab9acd10abe3aa2706eea8c9a576ed8a9e015487059f867cac3eb7fbb22a016" tabindex="452" ><img  src="svg/documento_gerar_pdf.svg?18" alt="Gerar Arquivo PDF do Documento" title="Gerar Arquivo PDF do Documento"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=50422398&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=4b0b7a75b271e9ace6326f4fabe074649bfc21bd7b24df5802d146f311d1b8d5" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[32].src = 'controlador.php?acao=documento_visualizar&acao_origem=procedimento_visualizar&id_documento=53918628&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=ef58145fc11411564381d4e841313f12bae8714a7c46254983a200f35d5f2cde';
+Nos[32].html = '';
+
+
+//CA=240
+Nos[33] = new infraArvoreNo("DOCUMENTO","53966483","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=53966483&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=692613179048bd1621362a869f4f002167448040854227519160a737efb0126b","ifrConteudoVisualizacao","E-mail 0050306726","Data de Envio: 09/09/2025 11:35:54\nDe: MS/COORDENAÇÃO-GERAL DE SANGUE E HEMODERIVADOS <sangue@saude.gov.br>\nPara: valterpinheiro@medicamentosfutura.com.br\n          monique@medfutura.com.br\n          fiscalizacao.sangue@saude.gov.br\n          taciana.ribeiro@saude.gov.br\n          Vera Lucia Magalhães <vera.magalhaes@saude.gov.br>\n          coagulopatias.sangue@saude.gov.br\nAssunto: Prorrogação do Contrato Administrativo nº 339/2023  CONCENTRADO DE FATOR DECOAGULAÇÃO, FATOR I (FIBRINOGÊNIO)\n","svg/documento_email.svg?18","svg/documento_email.svg?18","svg/documento_email.svg?18",true,true,null,null,"noVisitado","0050306726");
+Nos[33].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=53966483&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=83791825c8fb536d42c0a3cb2054eeb10aa87fa0c51285d025f308cc255c883d" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento" title="Consultar Documento" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=53966483&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=bc6bfc2c66cf5bdb458f65acc3e0b0c5a7ac2192ab49508deb5f57c731b1fcc5" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a target="_blank" href="controlador.php?acao=documento_imprimir_web&acao_origem=arvore_visualizar&id_documento=53966483&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=6d72bf80ee71261f50819dbaaa37de29285679838382aa7edf47fc259f026e42" tabindex="452" ><img  src="svg/documento_imprimir.svg?18" alt="Imprimir Web" title="Imprimir Web" /></a><a href="controlador.php?acao=procedimento_gerar_pdf&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=53966483&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=92c831dba7d3456076ea5c14fca25aefd494195d6d9209a741666dbbfc8500e3" tabindex="452" ><img  src="svg/documento_gerar_pdf.svg?18" alt="Gerar Arquivo PDF do Documento" title="Gerar Arquivo PDF do Documento"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=50467912&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=15e243b79e995be5bfdbd9c72de273d81788590d11ddfad18aab2c5c4d2acdf2" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[33].src = 'controlador.php?acao=documento_visualizar&acao_origem=procedimento_visualizar&id_documento=53966483&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=0f693951686a05badafaff940c584626dd67e8066b878697c6ee1fac1ef36ff8';
+Nos[33].html = '';
+
+
+//CA=230
+Nos[34] = new infraArvoreNo("DOCUMENTO","53950227","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=53950227&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=639ad0fe8e971642ac6c558125aafaf1a0eb01a80eddb44090092b7dc13e51bb","ifrConteudoVisualizacao","Parecer Técnico 422 Termo Aditivo - 2ª Prorrogação (0050291409)","Parecer Técnico 422 Termo Aditivo - 2ª Prorrogação (0050291409)","svg/documento_interno.svg?18","svg/documento_interno.svg?18","svg/documento_interno.svg?18",true,true,null,null,"noVisitado","0050291409");
+Nos[34].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=53950227&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=64fcc06783315e54fe26493a954d7bd9bb9bc0b24c8e8accb892525cc11c045e" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento" title="Consultar Documento" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=53950227&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b521860b86e8bc5731d3ec085da40c46915926864859c87f8be6d89f1514270b" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a target="_blank" href="controlador.php?acao=documento_imprimir_web&acao_origem=arvore_visualizar&id_documento=53950227&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=aa091c3ad2b1330c4278d3b2a5bb4495ed87473bd6807273184a72ff9069ed45" tabindex="452" ><img  src="svg/documento_imprimir.svg?18" alt="Imprimir Web" title="Imprimir Web" /></a><a href="controlador.php?acao=procedimento_gerar_pdf&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=53950227&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=e05e09868596d33f2d5b69d5bad16335a9cb193bf0afdee343a9948f63f6b5dd" tabindex="452" ><img  src="svg/documento_gerar_pdf.svg?18" alt="Gerar Arquivo PDF do Documento" title="Gerar Arquivo PDF do Documento"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=50452445&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=7b75581f347564ea0afea47d42d506cc88df8f3c3444bbbc7af102dbc81d17b3" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[34].src = 'controlador.php?acao=documento_visualizar&acao_origem=procedimento_visualizar&id_documento=53950227&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=d4c722ec52c0a826fbc88b5a6f2399583e050cef60227b1d596ca2c722e5898a';
+Nos[34].html = '';
+
+
+//CA=210
+Nos[35] = new infraArvoreNo("DOCUMENTO","54040899","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=54040899&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=94c6fc9d6452da5c1c030e8e92e310e195ae1eeaa523adf0ad655d3d5152b58a","ifrConteudoVisualizacao","Manifestação resposta Medfutura (0050376953)","Manifestação resposta Medfutura (0050376953)","svg/documento_pdf.svg?18","svg/documento_pdf.svg?18","svg/documento_pdf.svg?18",true,true,null,null,"noVisitado","0050376953");
+Nos[35].assinatura = '';
+Nos[35].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar_recebido&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=54040899&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=806f8fe0192291f17eebaf00cbdb5604d52f67d34cc4dac7c9f7b8c4138d4bae" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento Externo" title="Consultar Documento Externo" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=54040899&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=57df518060230e4db3c19bf9ba04c1bb0b5232c84a54e6fcae5bcfb9e9b9fa02" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=50538773&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=0948e2001f4444067182316a565ce18eed690728d7d4a3277f0d3cc78b740102" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[35].src = 'controlador.php?acao=documento_download_anexo&acao_origem=procedimento_visualizar&id_anexo=29762440&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=9cb7148b3f9d4fd400839232d46c1f26b4c5cabb242b5c448e11a6c6aeea89cd';
+Nos[35].html = 'Clique <a href="controlador.php?acao=documento_download_anexo&acao_origem=procedimento_visualizar&id_anexo=29762440&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=2e17e7519e31f77f486bdfeb9021fe44dbc12052d6bbd2f463ba4ac8835a8106" target="_blank" class="ancoraVisualizacaoArvore">aqui</a> para visualizar o conteúdo deste documento em uma nova janela.';
+
+
+//CA=230
+Nos[36] = new infraArvoreNo("DOCUMENTO","54041006","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=54041006&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=642620631a5bce0901b131db0d349a7250d7831a17a0405eebaba2ce0440bff5","ifrConteudoVisualizacao","Despacho 0050377052","Despacho 0050377052","svg/documento_interno.svg?18","svg/documento_interno.svg?18","svg/documento_interno.svg?18",true,true,null,null,"noVisitado","0050377052");
+Nos[36].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_consultar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=54041006&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=eb1e9536654dc06461c69cc4097bee3911188b609b2ec306cf0065b97bcd4747" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar Documento" title="Consultar Documento" /></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=54041006&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=41b294f2788171fd026d462b1c71f4116e51494f1a353e61dd220a344a48d8be" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a target="_blank" href="controlador.php?acao=documento_imprimir_web&acao_origem=arvore_visualizar&id_documento=54041006&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=ca1e5781ee799d63ddca2d31e6a9990e2554f32b697dabd6b90f92f1264bfdb1" tabindex="452" ><img  src="svg/documento_imprimir.svg?18" alt="Imprimir Web" title="Imprimir Web" /></a><a href="controlador.php?acao=procedimento_gerar_pdf&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=54041006&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=eacc2df66195e936af2f76c9413e44acc1b702efe833432bff58f4d963e4a708" tabindex="452" ><img  src="svg/documento_gerar_pdf.svg?18" alt="Gerar Arquivo PDF do Documento" title="Gerar Arquivo PDF do Documento"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=50538875&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=61e15ccf24d1716d81eebc7a926ae8023f0fbaebd1c718e8318bc305ae1fa24f" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[36].src = 'controlador.php?acao=documento_visualizar&acao_origem=procedimento_visualizar&id_documento=54041006&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=c107cda05e744d304c1ee5977d3eec8891ea5b257410d8c9393581bd90b68080';
+Nos[36].html = '';
+
+
+//CA=220
+Nos[37] = new infraArvoreNo("DOCUMENTO","54044823","PASTA10","controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=54044823&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=f62588fce97774c0ee14779d1017124746ebd1a8844cf1deeef16988f958d24a","ifrConteudoVisualizacao","Despacho 0050380649","Despacho 0050380649","svg/documento_interno.svg?18","svg/documento_interno.svg?18","svg/documento_interno.svg?18",true,true,null,null,"noVisitado","0050380649");
+Nos[37].acoes = '<a href="controlador.php?acao=documento_receber&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&flag_protocolo=S&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=8405a3c0249b7da2ad181d22f36a272613b5feca5408a349f51659c7098b6c43" tabindex="452" ><img  src="svg/documento_incluir.svg?18" alt="Registrar Documento Externo" title="Registrar Documento Externo"/></a><a href="controlador.php?acao=documento_alterar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=54044823&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=2b3e1902124250010018ceef4a425da144d840d2891fdbfb378b9ad8b0af5e2b" tabindex="452" ><img  src="svg/documento_alterar.svg?18" alt="Consultar/Alterar Documento" title="Consultar/Alterar Documento"/></a><a href="controlador.php?acao=acompanhamento_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=b6161a054ed8122f2b0a05a88052c2de316d961c38b09bc3831ece61541de774" tabindex="452" ><img  src="svg/acompanhamento_especial_cadastro.svg?18" alt="Acompanhamento Especial" title="Acompanhamento Especial"/></a><a href="controlador.php?acao=protocolo_modelo_gerenciar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_protocolo=54044823&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=ce005de6f7c21e5e0aeca9bdad80dd76620da7af94fa66e53217f4cf484ecd25" tabindex="452" ><img  src="svg/documento_modelo.svg?18" alt="Adicionar aos Favoritos" title="Adicionar aos Favoritos"/></a><a target="_blank" href="controlador.php?acao=documento_imprimir_web&acao_origem=arvore_visualizar&id_documento=54044823&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=9e848dd295c8c136861bd1d6c1677a1ab98bc229639fe93ff7d107c1dfb6682b" tabindex="452" ><img  src="svg/documento_imprimir.svg?18" alt="Imprimir Web" title="Imprimir Web" /></a><a href="controlador.php?acao=procedimento_gerar_pdf&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_documento=54044823&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=4a94864611896a9d0239d1b1dd672ecaa5913a6e5784e07ff05c2073b0d6d730" tabindex="452" ><img  src="svg/documento_gerar_pdf.svg?18" alt="Gerar Arquivo PDF do Documento" title="Gerar Arquivo PDF do Documento"/></a><a href="controlador.php?acao=comentario_listar&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&id_rel_protocolo_protocolo=50542482&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=ba6bcff1c5f2bc8c598302f50a408de8cb69fda34609cf21470a5db6947907c9" tabindex="452" ><img  src="svg/comentario.svg?18" alt="Comentários" title="Comentários"/></a><a href="#" onclick="reabrirProcesso();" tabindex="452" ><img src="svg/processo_reabrir.svg?18" alt="Reabrir Processo" title="Reabrir Processo" />';
+Nos[37].src = 'controlador.php?acao=documento_visualizar&acao_origem=procedimento_visualizar&id_documento=54044823&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=bdc821957ece9569ee8537782f4e8ac34a07bed327568ceaed4bca45e95e9372';
+Nos[37].html = '';
+
+
+
+
+
+
+
+
+
+
+
+
+    NosAcoes[0] = new infraArvoreAcao("LINHA_DIRETA","LD35189454","35189454","controlador.php?acao=procedimento_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&linha_direta=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=1c591dbe380352281a6c19ba6cb55ff2d700979e925974a6fcd65ade7819638b",null,"Filtrar Linha Direta","svg/linha_direta1.svg?18",true);
+NosAcoes[1] = new infraArvoreAcao("NIVEL_ACESSO","NA35189454","35189454","javascript:alert('Acesso Restrito\\nDocumento Preparatório (Art. 7º, § 3º, da Lei nº 12.527/2011)');",null,"Acesso Restrito\nDocumento Preparatório (Art. 7º, § 3º, da Lei nº 12.527/2011)","svg/processo_restrito.svg?18",true);
+NosAcoes[2] = new infraArvoreAcao("CIENCIAS","C","35189454","controlador.php?acao=protocolo_ciencia_listar&acao_origem=procedimento_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=3a924f3323113830d437a881a7d69bffeb68b750dc4da0fbda513938aaac9256","ifrVisualizacao","Visualizar Ciências","svg/ciencia.svg?18",true);
+NosAcoes[3] = new infraArvoreAcao("ABRIR_PASTAS","AP35189454","35189454","controlador.php?acao=procedimento_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&abrir_pastas=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=9f156a906e1047cd1b4d80ebf2f8a73c6107bbe9d7c4671ed22c169069bf2ea5",null,"Abrir todas as Pastas","/infra_css/svg/mais.svg",true);
+NosAcoes[4] = new infraArvoreAcao("FECHAR_PASTAS","FP35189454","35189454","controlador.php?acao=procedimento_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&fechar_pastas=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=5889c7020345ec356c2001800dedebcf07ce1d6e26acba9d667088449550126f",null,"Fechar todas as Pastas","/infra_css/svg/menos.svg",true);
+NosAcoes[5] = new infraArvoreAcao("UNIDADE_GERADORA","UG48225415","48225415","#",null,"Divisão de Execução Orçamentária",null,true,"DIVEO");
+NosAcoes[6] = new infraArvoreAcao("ASSINATURA","A48225415","48225415","javascript:alert('Assinado por:\\nCarlos Roberto Teixeira de Queiroz\\nChefe da Divisão de Execução Orçamentária\\nDIVEO');",null,"Assinado por:\nCarlos Roberto Teixeira de Queiroz\nChefe da Divisão de Execução Orçamentária\nDIVEO","svg/assinatura2.svg?18",true);
+NosAcoes[7] = new infraArvoreAcao("CIENCIAS","CD48225415","48225415","controlador.php?acao=protocolo_ciencia_listar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=48225415&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=d61a64911ffab54eb98112a9155070c60a98039f5165ba29413aafafaf3007df","ifrVisualizacao","Visualizar Ciências no Documento","svg/ciencia.svg?18",true);
+NosAcoes[8] = new infraArvoreAcao("UNIDADE_GERADORA","UG49204487","49204487","#",null,"Coordenação-Geral de Sangue e Hemoderivados",null,true,"CGSH");
+NosAcoes[9] = new infraArvoreAcao("UNIDADE_GERADORA","UG49204495","49204495","#",null,"Coordenação-Geral de Sangue e Hemoderivados",null,true,"CGSH");
+NosAcoes[10] = new infraArvoreAcao("UNIDADE_GERADORA","UG50273205","50273205","#",null,"Coordenação-Geral de Sangue e Hemoderivados",null,true,"CGSH");
+NosAcoes[11] = new infraArvoreAcao("ASSINATURA","A50273205","50273205","javascript:alert('Assinado por:\\nNatan Monsores de Sá\\nCoordenador(a)-Geral de Sangue e Hemoderivados substituto(a)\\nCGSH');",null,"Assinado por:\nNatan Monsores de Sá\nCoordenador(a)-Geral de Sangue e Hemoderivados substituto(a)\nCGSH","svg/assinatura2.svg?18",true);
+NosAcoes[12] = new infraArvoreAcao("UNIDADE_GERADORA","UG50364408","50364408","#",null,"Divisão de Contratos de Insumos Estratégicos para Saúde",null,true,"DICON");
+NosAcoes[13] = new infraArvoreAcao("UNIDADE_GERADORA","UG50372084","50372084","#",null,"Divisão de Contratos de Insumos Estratégicos para Saúde",null,true,"DICON");
+NosAcoes[14] = new infraArvoreAcao("CIENCIAS","CD50372084","50372084","controlador.php?acao=protocolo_ciencia_listar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=50372084&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=ee2624737ac45e8a3c876e9d14a2b9d751ae86128c99ddda239a75f53c194b0e","ifrVisualizacao","Visualizar Ciências no Documento","svg/ciencia.svg?18",true);
+NosAcoes[15] = new infraArvoreAcao("UNIDADE_GERADORA","UG50372154","50372154","#",null,"Divisão de Contratos de Insumos Estratégicos para Saúde",null,true,"DICON");
+NosAcoes[16] = new infraArvoreAcao("ASSINATURA","A50372154","50372154","javascript:alert('Assinado por:\\nMichelle Araujo Soares\\nChefe da Divisão de Contratos de Insumos Estratégicos para Saúde\\nDICON');",null,"Assinado por:\nMichelle Araujo Soares\nChefe da Divisão de Contratos de Insumos Estratégicos para Saúde\nDICON","svg/assinatura2.svg?18",true);
+NosAcoes[17] = new infraArvoreAcao("CIENCIAS","CD50372154","50372154","controlador.php?acao=protocolo_ciencia_listar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=50372154&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=5b308670b3fe3ae392316d8785a878e8f8c57429fdf286314b3e82d2916bec44","ifrVisualizacao","Visualizar Ciências no Documento","svg/ciencia.svg?18",true);
+NosAcoes[18] = new infraArvoreAcao("UNIDADE_GERADORA","UG52830922","52830922","#",null,"Coordenação-Geral de Sangue e Hemoderivados",null,true,"CGSH");
+NosAcoes[19] = new infraArvoreAcao("NIVEL_ACESSO","NA52830922","52830922","javascript:alert('Acesso Restrito\\nDocumento Preparatório (Art. 7º, § 3º, da Lei nº 12.527/2011)');",null,"Acesso Restrito\nDocumento Preparatório (Art. 7º, § 3º, da Lei nº 12.527/2011)","svg/processo_restrito.svg?18",true);
+NosAcoes[20] = new infraArvoreAcao("ASSINATURA","A52830922","52830922","javascript:alert('Assinado por:\\nLuciana Maria de Barros Carlos\\nCoordenador(a)-Geral de Sangue e Hemoderivados\\nCGSH\\n\\nArthur Lobato Barreto Mello\\nDiretor(a) do Departamento de Atenção Especializada e Temática\\nDAET');",null,"Assinado por:\nLuciana Maria de Barros Carlos\nCoordenador(a)-Geral de Sangue e Hemoderivados\nCGSH\n\nArthur Lobato Barreto Mello\nDiretor(a) do Departamento de Atenção Especializada e Temática\nDAET","svg/assinatura2.svg?18",true);
+NosAcoes[21] = new infraArvoreAcao("UNIDADE_GERADORA","UG52830996","52830996","#",null,"Coordenação-Geral de Sangue e Hemoderivados",null,true,"CGSH");
+NosAcoes[22] = new infraArvoreAcao("NIVEL_ACESSO","NA52830996","52830996","javascript:alert('Acesso Restrito\\nDocumento Preparatório (Art. 7º, § 3º, da Lei nº 12.527/2011)');",null,"Acesso Restrito\nDocumento Preparatório (Art. 7º, § 3º, da Lei nº 12.527/2011)","svg/processo_restrito.svg?18",true);
+NosAcoes[23] = new infraArvoreAcao("ASSINATURA","A52830996","52830996","javascript:alert('Assinado por:\\nLuciana Maria de Barros Carlos\\nCoordenador(a)-Geral de Sangue e Hemoderivados\\nCGSH\\n\\nArthur Lobato Barreto Mello\\nDiretor(a) do Departamento de Atenção Especializada e Temática\\nDAET');",null,"Assinado por:\nLuciana Maria de Barros Carlos\nCoordenador(a)-Geral de Sangue e Hemoderivados\nCGSH\n\nArthur Lobato Barreto Mello\nDiretor(a) do Departamento de Atenção Especializada e Temática\nDAET","svg/assinatura2.svg?18",true);
+NosAcoes[24] = new infraArvoreAcao("UNIDADE_GERADORA","UG52832621","52832621","#",null,"Coordenação-Geral de Sangue e Hemoderivados",null,true,"CGSH");
+NosAcoes[25] = new infraArvoreAcao("NIVEL_ACESSO","NA52832621","52832621","javascript:alert('Acesso Restrito\\nDocumento Preparatório (Art. 7º, § 3º, da Lei nº 12.527/2011)');",null,"Acesso Restrito\nDocumento Preparatório (Art. 7º, § 3º, da Lei nº 12.527/2011)","svg/processo_restrito.svg?18",true);
+NosAcoes[26] = new infraArvoreAcao("UNIDADE_GERADORA","UG52904748","52904748","#",null,"Coordenação-Geral de Planejamento, Orçamento e Monitoramento da Execução Financeira",null,true,"CGPO/SAES");
+NosAcoes[27] = new infraArvoreAcao("ASSINATURA","A52904748","52904748","javascript:alert('Assinado por:\\nJaqueline Ceolin de Amorim\\nCoordenador(a)-Geral de Planejamento, Orçamento e Monitoramento da Execução Financeira substituto(a)\\nCGPO/SAES');",null,"Assinado por:\nJaqueline Ceolin de Amorim\nCoordenador(a)-Geral de Planejamento, Orçamento e Monitoramento da Execução Financeira substituto(a)\nCGPO/SAES","svg/assinatura2.svg?18",true);
+NosAcoes[28] = new infraArvoreAcao("CIENCIAS","CD52904748","52904748","controlador.php?acao=protocolo_ciencia_listar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=52904748&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=2452c744f8c416ed568e0f224c6bbe8be96315427871b00a56e831b9b514cde2","ifrVisualizacao","Visualizar Ciências no Documento","svg/ciencia.svg?18",true);
+NosAcoes[29] = new infraArvoreAcao("UNIDADE_GERADORA","UG52919075","52919075","#",null,"Coordenação-Geral de Demandas de Órgãos Externos da Atenção Especializada",null,true,"CGOEX/SAES");
+NosAcoes[30] = new infraArvoreAcao("ASSINATURA","A52919075","52919075","javascript:alert('Assinado por:\\nMozart Julio Tabosa Sales\\nSecretário(a) de Atenção Especializada à Saúde\\nSAES\\n\\nPaula Oliveira da Silva\\nCoordenador(a)-Geral de Demandas de Órgãos Externos da Atenção Especializada\\nCGOEX/SAES');",null,"Assinado por:\nMozart Julio Tabosa Sales\nSecretário(a) de Atenção Especializada à Saúde\nSAES\n\nPaula Oliveira da Silva\nCoordenador(a)-Geral de Demandas de Órgãos Externos da Atenção Especializada\nCGOEX/SAES","svg/assinatura2.svg?18",true);
+NosAcoes[31] = new infraArvoreAcao("UNIDADE_GERADORA","UG53918628","53918628","#",null,"Coordenação-Geral de Sangue e Hemoderivados",null,true,"CGSH");
+NosAcoes[32] = new infraArvoreAcao("ASSINATURA","A53918628","53918628","javascript:alert('Assinado por:\\nLuciana Maria de Barros Carlos\\nCoordenador(a)-Geral de Sangue e Hemoderivados\\nCGSH');",null,"Assinado por:\nLuciana Maria de Barros Carlos\nCoordenador(a)-Geral de Sangue e Hemoderivados\nCGSH","svg/assinatura2.svg?18",true);
+NosAcoes[33] = new infraArvoreAcao("UNIDADE_GERADORA","UG53966483","53966483","#",null,"Coordenação-Geral de Sangue e Hemoderivados",null,true,"CGSH");
+NosAcoes[34] = new infraArvoreAcao("UNIDADE_GERADORA","UG53950227","53950227","#",null,"Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde",null,true,"DIMEC");
+NosAcoes[35] = new infraArvoreAcao("NIVEL_ACESSO","NA53950227","53950227","javascript:alert('Acesso Restrito\\nDocumento Preparatório (Art. 7º, § 3º, da Lei nº 12.527/2011)');",null,"Acesso Restrito\nDocumento Preparatório (Art. 7º, § 3º, da Lei nº 12.527/2011)","svg/processo_restrito.svg?18",true);
+NosAcoes[36] = new infraArvoreAcao("ASSINATURA","A53950227","53950227","javascript:alert('Assinado por:\\nReginaldo Gonçalves\\nChefe da Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde\\nCOPLAM');",null,"Assinado por:\nReginaldo Gonçalves\nChefe da Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde\nCOPLAM","svg/assinatura2.svg?18",true);
+NosAcoes[37] = new infraArvoreAcao("UNIDADE_GERADORA","UG54040899","54040899","#",null,"Coordenação-Geral de Sangue e Hemoderivados",null,true,"CGSH");
+NosAcoes[38] = new infraArvoreAcao("UNIDADE_GERADORA","UG54041006","54041006","#",null,"Coordenação-Geral de Sangue e Hemoderivados",null,true,"CGSH");
+NosAcoes[39] = new infraArvoreAcao("ASSINATURA","A54041006","54041006","javascript:alert('Assinado por:\\nLuciana Maria de Barros Carlos\\nCoordenador(a)-Geral de Sangue e Hemoderivados\\nCGSH');",null,"Assinado por:\nLuciana Maria de Barros Carlos\nCoordenador(a)-Geral de Sangue e Hemoderivados\nCGSH","svg/assinatura2.svg?18",true);
+NosAcoes[40] = new infraArvoreAcao("UNIDADE_GERADORA","UG54044823","54044823","#",null,"Coordenação-Geral de Planejamento, Monitoramento e Controle Logístico",null,true,"CGPLAM");
+NosAcoes[41] = new infraArvoreAcao("ASSINATURA","A54044823","54044823","javascript:alert('Assinado por:\\nPedro Peres da Silva\\nCoordenador(a)-Geral de Planejamento, Monitoramento e Controle Logístico\\nCGPLAM');",null,"Assinado por:\nPedro Peres da Silva\nCoordenador(a)-Geral de Planejamento, Monitoramento e Controle Logístico\nCGPLAM","svg/assinatura2.svg?18",true);
+NosAcoes[42] = new infraArvoreAcao("CIENCIAS","CD54044823","54044823","controlador.php?acao=protocolo_ciencia_listar&acao_origem=procedimento_visualizar&id_procedimento=35189454&id_documento=54044823&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=3510931224172b39783736d961194b755b477616e53277702edc6a8998c740ff","ifrVisualizacao","Visualizar Ciências no Documento","svg/ciencia.svg?18",true);
+
+
+
+    for (i = 0; i < Nos.length; i++) {
+      Nos[i].bolAgrupador = infraInArray(Nos[i].tipo,['FEDERACAO','INSTALACAO_FEDERACAO','PASTA']);
+    }
+
+    objArvore = new infraArvore('divArvore', Nos, NosAcoes, 'hdnArvore', 'topmenu', 24);
+
+    configurarArvore(objArvore, Pastas, '35189454', 10);
+
+    processarAcoes(NosAcoes);
+
+        objArvore.numPastasAbertas=1;
+    if (Nos.length){
+
+      Nos[0].processar = function (){
+        if(!parent.infraIsBreakpointBootstrap("lg")) {
+          parent.document.getElementById('ifrConteudoVisualizacao').src = "about:blank";
+          setTimeout(function () {
+            visualizarDocumento();
+          },100)
+        }
+        document.location = 'controlador.php?acao=procedimento_visualizar&acao_origem=procedimento_visualizar&id_procedimento=35189454&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=1573659c575f2cf48c6bc5772a5c024beaa9a7f6153de86d0aa2a6d496f32a5c';
+        return false;
+      }
+
+      if  (typeof(Clipboard) != 'undefined'){
+        associarNosClipboard(Nos,NosAcoes,'https://sei.saude.gov.br/sei','35189454');
+      }
+    }
+
+
+    var objNoSelecionado = null;
+    if ('' != ''){
+      objNoSelecionado = objArvore.getNo('');
+    }else if ('' != ''){
+      objNoSelecionado = objArvore.getNo('');
+    }else if(parent.infraIsBreakpointBootstrap("lg")){
+      objNoSelecionado = objArvore.getNo('35189454');
+    }else{
+      objNoSelecionado = objArvore.getNo('35189454');
+    }
+
+    if (objNoSelecionado != null){
+      objArvore.setNoSelecionado(objNoSelecionado);
+            self.setTimeout('atualizarVisualizacao()',300);
+          }
+  }
+
+//--><!]]>
+</script>
+</head>
+
+<body onload="inicializar();" class="infraArvore">
+<div id="header" class="px-2">
+  <div id="topmenu"></div>
+</div>
+<div id="container" class="px-2">
+  <div id="content">
+    <form id="frmArvore" method="post" target="ifrPasta">
+
+      <div id="divArvore">
+      </div>
+      <div id="divConsultarAndamento">
+        <a href="#" style="cursor:pointer;" onclick="consultarAndamento('controlador.php?acao=procedimento_consultar_historico&acao_origem=arvore_visualizar&acao_retorno=arvore_visualizar&id_procedimento=35189454&arvore=1&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=92018137b762a13ddf19768485132351ea02f31e951dba86f920541d25e2587c');"><img src="svg/processo_andamentos.svg?18" alt="Consultar Andamento" title="Consultar Andamento" />&nbsp;Consultar Andamento</a>
+      </div>
+
+      <div id="divRelacionados">
+        <label>Processos Relacionados:</label> <br />      </div>
+      <div id="divRelacionadosParciais">
+<a href="javascript:void(0);" onclick="visualizacaoRelacionados(0)" class="ancoraRelacionadosParcial">Atividade-Fim: Aquisição de Medicamento e Insumos em Saúde - Compra (1)</a><br /><div id="divRelacionadosParcial0" class="divRelacionadosParcial">
+<div class="card-deck cardDeckRelacionado"><div class="card cardRelacionado">
+    <div class="card-body cardBodyRelacionado">
+      <p class="card-title cardTitleRelacionado"><a target="_blank" href="controlador.php?acao=procedimento_trabalhar&acao_origem=procedimento_visualizar&id_procedimento=38310316&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=2e19d093ca8542192c123d950e8629bd31424006a8844a192cf79aca8d5934b6" class="card-block text-danger">25000.121393/2023-10</a></p><p class="card-text">Pesquisa de Mercado - Fator I - Fribrinogênio</p>
+                </div>
+            </div>            
+            </div></div>
+<a href="javascript:void(0);" onclick="visualizacaoRelacionados(1)" class="ancoraRelacionadosParcial">Gestão de Contrato: Pagamento - Compra de Material de Consumo (2)</a><br /><div id="divRelacionadosParcial1" class="divRelacionadosParcial">
+<div class="card-deck cardDeckRelacionado"><div class="card cardRelacionado">
+    <div class="card-body cardBodyRelacionado">
+      <p class="card-title cardTitleRelacionado"><a target="_blank" href="controlador.php?acao=procedimento_trabalhar&acao_origem=procedimento_visualizar&id_procedimento=40917262&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=effaaff1c69e01620b87602e3f4411b4e1f5ba22533dfab50e5f06cd3b0f23ed" class="card-block text-danger">25000.189772/2023-15</a></p><p class="card-text">CONTRATO Nº 339/2023-EMPRESA MEDFUTURA</p>
+                </div>
+            </div>            
+            <div class="card cardRelacionado">
+    <div class="card-body cardBodyRelacionado">
+      <p class="card-title cardTitleRelacionado"><a target="_blank" href="controlador.php?acao=procedimento_trabalhar&acao_origem=procedimento_visualizar&id_procedimento=48609183&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=848e4a1cc2246c6eb41ca341fe17365bf78b14488c2129fa261d5284d366d7ea" class="card-block text-danger">25000.197376/2024-34</a></p><p class="card-text">2º TA Contrato nº  339/2023 - KIT FATOR I FIBRINOGÊNIO</p>
+                </div>
+            </div>            
+            </div></div>
+</div>
+
+      <input type="hidden" id="hdnArvore" name="hdnArvore" value="" />
+      <input type="hidden" id="hdnPastaAtual" name="hdnPastaAtual" value="" />
+      <input type="hidden" id="hdnProtocolos" name="hdnProtocolos" value="" />
+    </form>
+  </div>
+</div>
+<a href="#" id="aVisualizarDocumento" onclick="visualizarDocumento()" ><img   src="/infra_css/svg/avancar.svg" title="Voltar para o Protocolo" alt="Voltar para o Protocolo" ></a>
+
+<iframe id="ifrPasta" name="ifrPasta" onload="processarPasta('https://sei.saude.gov.br/sei','35189454');" width="100%" height="100%" frameborder="0" style="display:none;"></iframe>
+</body>
+</html>
+
+
+#### Frame do Histórico
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="pt-br" >
+<head >
+
+<link rel="shortcut icon" sizes="any" href="favicon/favicon.ico" />         
+<link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />         
+<link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" />
+<link rel="manifest" href="favicon/site.webmanifest" />
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<meta name="robots" content="noindex"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+<title>Sistema Único de Processo Eletrônico em Rede - Histórico do Processo 25000.039367/2023-49&nbsp;&nbsp;</title>
+<link href="/infra_css/infra-tooltip.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_css/infra-barra-progresso.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_css/infra-impressao-global.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="print"/>
+<link href="/infra_css/infra-ajax.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/calendario/v2/infra-calendario.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/arvore/infra-arvore.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/mapa/infra-mapa.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/jquery/jquery-ui-1.13.2/jquery-ui.min.css?1.13.2" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/jquery/jquery-ui-1.13.2/jquery-ui.structure.min.css?1.13.2" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/jquery/jquery-ui-1.13.2/jquery-ui.theme.min.css?1.13.2" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/multiple-select/multiple-select.min.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_js/modal/jquery.modalLink-1.0.0.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_css/bootstrap/bootstrap-4.6.2.min.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_css/bootstrap/menu-bootstrap.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_css/infra-global-esquema-3.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<link href="/infra_css/esquemas/vermelho/infra-esquema-3.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>      
+<link href="css/infra-local-esquema-3.css?4.1.5-2.29.0" rel="stylesheet" type="text/css" media="all"/>
+<style></style><style type="text/css" >
+<!--/*--><![CDATA[/*><!--*/
+
+
+.andamentoAberto {
+  background-color:#ffff66;
+}
+
+.andamentoConcluido {
+  background-color:white;
+}
+
+#tblHistorico td{
+padding:.2em;
+}
+  
+/*]]>*/-->
+</style>
+<script type="text/javascript">var INFRA_PATH_CSS="/infra_css",INFRA_PATH_IMAGENS="/infra_css/imagens",INFRA_PATH_JS="/infra_js",INFRA_PATH_SVG="/infra_css/svg",INFRA_LUPA_TIPO_JANELA=2,INFRA_BARRA_TIPO_JANELA=2,INFRA_TIPO_ALERTA=1;</script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/jquery/jquery-3.7.0.min.js?3.7.0"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/jquery/jquery-ui-1.13.2/jquery-ui.min.js?1.13.2"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/multiple-select/multiple-select.min.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/ddslick/jquery.ddslick.min.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/modal/jquery.modalLink-1.0.0.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraPaginaEsquema3.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraBotaoMenu.js?4.1.5-2.29.0"></script>    
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraUtil.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraCookie.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraUpload.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraTabelaDinamica.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraLupas.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraSelectEditavel.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraAjax.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/InfraTooltip.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/calendario/v2/InfraCalendario.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/arvore/InfraArvore.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="/infra_js/maskedpwd/MaskedPassword.min.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/bootstrap/bootstrap-4.6.2.min.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/bootstrap/infra-menu-bootstrap.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/touch/jquery.ui.touch-punch.min.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="utf-8" src="/infra_js/hotkeys/jquery.hotkeys.js?4.1.5-2.29.0"></script>
+<script type="text/javascript" charset="iso-8859-1" src="js/sei.js?4.1.5-2.29.0"></script>
+
+<script type="text/javascript" charset="iso-8859-1" >
+<!--//--><![CDATA[//><!--
+
+
+function inicializar(){
+  var objArvore = parent.parent.document.getElementById('ifrArvore').contentWindow['objArvore'];
+  if (objArvore!=null) {
+    var nos = objArvore.nodes;
+    if (nos!=null && nos!=undefined) {
+      objArvore.setNoSelecionado(nos[0]);
+    }
+  }
+
+
+  if (document.getElementById('btnAtualizarAndamento')!=null){
+    document.getElementById('btnAtualizarAndamento').focus();
+  }else if (document.getElementById('ancTipoHistorico')!=null){
+    document.getElementById('ancTipoHistorico').focus();
+  }
+  infraEfeitoTabelas();
+
+  }
+
+function verHistorico(valor){
+  document.getElementById('hdnTipoHistorico').value = valor;
+  document.getElementById('frmProcedimentoHistorico').submit();
+}
+
+
+
+//--><!]]>
+</script>
+</head>
+<body onload="inicializar();"  >
+<button onclick="infraMoverParaTopo()" id="btnInfraTopo" class="infraButton infraCorBarraSistema" ><img src="/infra_css/svg/topo.svg?2.29.0" title="Voltar ao Topo" alt="Voltar ao Topo" tabindex="32767"></button>
+<div id="divInfraAreaGlobal" class="vh-100 vw-100 d-flex flex-column m-0 border-0" >
+<div id="divInfraAreaTela" style="min-height:0;"  class="w-100  flex-grow-1 d-flex flex-row  divInfraAreaTelaSimples">
+<div id="divInfraAreaTelaD"  class=" flex-grow-1 px-3" >
+<div id="divInfraBarraLocalizacao" class="infraBarraLocalizacao" tabindex="450">Histórico do Processo 25000.039367/2023-49&nbsp;&nbsp;</div>
+
+<form id="frmProcedimentoHistorico" method="post" action="controlador.php?acao=procedimento_consultar_historico&acao_origem=procedimento_consultar_historico&arvore=1&id_procedimento=35189454&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=a796f07cf2eb42112f46f63f762aff075fa045558d1fe7d4f50495268f558d98">
+
+
+  <div id="divInfraAreaDados" class="infraAreaDados" style="height:2.5em;">
+<a id="ancTipoHistorico" href="#" onclick="verHistorico('P');" class="ancoraPadraoPreta" tabindex="501">Ver histórico completo</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+<div id="divInfraAreaPaginacaoSuperior" class="infraAreaPaginacao">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="selInfraPaginacaoSuperior" name="selInfraPaginacaoSuperior" onchange="infraAcaoPaginar('=',this.value,'Infra', null);" class="infraSelect" tabindex="1001" aria-label="Escolher Página" style="display:inline;">
+<option value="0" selected="selected" >1</option>
+<option value="1">2</option>
+<option value="2">3</option>
+</select>&nbsp;&nbsp;
+<a id="lnkInfraProximaPaginaSuperior" href="javascript:void(0);" onclick="infraAcaoPaginar('+',0,'Infra', null);" title="Próxima Página" tabindex="1001"><img src="/infra_css/svg/paginacao_proxima.svg" title="Próxima Página" alt="Próxima Página" class="infraImg"/></a>&nbsp;&nbsp;
+
+&nbsp;<a id="lnkInfraUltimaPaginaSuperior" href="javascript:void(0);" onclick="infraAcaoPaginar('=',2,'Infra', null);" title="Última Página" tabindex="1001"><img src="/infra_css/svg/paginacao_ultima.svg" title="Última Página" alt="Última Página" class="infraImg"/></a></div>
+<div id="divInfraAreaTabela" class="infraAreaTabela" >
+<table id="tblHistorico" width="99%" class="infraTable" summary="Histórico de Andamentos">
+<caption class="infraCaption">Lista de Andamentos (277 registros - 1 a 100):</caption><tr><th class="infraTh" width="15%">Data/Hora</th><th class="infraTh" width="15%">Unidade</th><th class="infraTh" width="10%">Usuário</th><th class="infraTh">Descrição</th></tr>
+
+
+<!-- 284156553 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/09/2025 11:52</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Conformidade e Contratação Direta de Insumos Estratégicos para Saúde" title="Coordenação-Geral de Conformidade e Contratação Direta de Insumos Estratégicos para Saúde" class="ancoraSigla">CGIES</a></td>
+<td align="center"  valign="top"><a alt="Franklin Martins Barbosa" title="Franklin Martins Barbosa" class="ancoraSigla">franklin.barbosa</a></td>
+<td valign="top">Conclusão do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 284156403 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/09/2025 11:51</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Conformidade e Contratação Direta de Insumos Estratégicos para Saúde" title="Coordenação-Geral de Conformidade e Contratação Direta de Insumos Estratégicos para Saúde" class="ancoraSigla">CGIES</a></td>
+<td align="center"  valign="top"><a alt="Franklin Martins Barbosa" title="Franklin Martins Barbosa" class="ancoraSigla">franklin.barbosa</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 284155563 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/09/2025 11:48</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Conformidade e Contratação Direta de Insumos Estratégicos para Saúde" title="Coordenação-Geral de Conformidade e Contratação Direta de Insumos Estratégicos para Saúde" class="ancoraSigla">CGIES</a></td>
+<td align="center"  valign="top"><a alt="Viviane Aparecida Bruno Inacio" title="Viviane Aparecida Bruno Inacio" class="ancoraSigla">viviane.inacio</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Planejamento, Monitoramento e Controle Logístico" title="Coordenação-Geral de Planejamento, Monitoramento e Controle Logístico" class="ancoraSigla">CGPLAM</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 284154437 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/09/2025 11:46</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Planejamento, Monitoramento e Controle Logístico" title="Coordenação-Geral de Planejamento, Monitoramento e Controle Logístico" class="ancoraSigla">CGPLAM</a></td>
+<td align="center"  valign="top"><a alt="Viviane Aparecida Bruno Inacio" title="Viviane Aparecida Bruno Inacio" class="ancoraSigla">viviane.inacio</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 284146246 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/09/2025 11:16</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Conformidade e Contratação Direta de Insumos Estratégicos para Saúde" title="Coordenação-Geral de Conformidade e Contratação Direta de Insumos Estratégicos para Saúde" class="ancoraSigla">CGIES</a></td>
+<td align="center"  valign="top"><a alt="Franklin Martins Barbosa" title="Franklin Martins Barbosa" class="ancoraSigla">franklin.barbosa</a></td>
+<td valign="top">Conclusão do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 284145956 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/09/2025 11:15</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Conformidade e Contratação Direta de Insumos Estratégicos para Saúde" title="Coordenação-Geral de Conformidade e Contratação Direta de Insumos Estratégicos para Saúde" class="ancoraSigla">CGIES</a></td>
+<td align="center"  valign="top"><a alt="Franklin Martins Barbosa" title="Franklin Martins Barbosa" class="ancoraSigla">franklin.barbosa</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 284138163 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/09/2025 10:50</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Planejamento, Monitoramento e Controle Logístico" title="Coordenação-Geral de Planejamento, Monitoramento e Controle Logístico" class="ancoraSigla">CGPLAM</a></td>
+<td align="center"  valign="top"><a alt="Cristina Xavier" title="Cristina Xavier" class="ancoraSigla">cristina.xavier</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 284111069 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/09/2025 09:15</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Conformidade e Contratação Direta de Insumos Estratégicos para Saúde" title="Coordenação-Geral de Conformidade e Contratação Direta de Insumos Estratégicos para Saúde" class="ancoraSigla">CGIES</a></td>
+<td align="center"  valign="top"><a alt="Igara Lúcia Nunes Sallaberry Cayres" title="Igara Lúcia Nunes Sallaberry Cayres" class="ancoraSigla">igara.cayres</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação de Gestão Técnica e Administrativa" title="Coordenação de Gestão Técnica e Administrativa" class="ancoraSigla">COGAD/DLOG</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 284110521 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/09/2025 09:12</td>
+<td align="center"  valign="top"><a alt="Coordenação de Gestão Técnica e Administrativa" title="Coordenação de Gestão Técnica e Administrativa" class="ancoraSigla">COGAD/DLOG</a></td>
+<td align="center"  valign="top"><a alt="Igara Lúcia Nunes Sallaberry Cayres" title="Igara Lúcia Nunes Sallaberry Cayres" class="ancoraSigla">igara.cayres</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 284085534 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">11/09/2025 18:36</td>
+<td align="center"  valign="top"><a alt="Coordenação de Gestão Técnica e Administrativa" title="Coordenação de Gestão Técnica e Administrativa" class="ancoraSigla">COGAD/DLOG</a></td>
+<td align="center"  valign="top"><a alt="Pedro Peres da Silva" title="Pedro Peres da Silva" class="ancoraSigla">pedro.peres</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Planejamento, Monitoramento e Controle Logístico" title="Coordenação-Geral de Planejamento, Monitoramento e Controle Logístico" class="ancoraSigla">CGPLAM</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 284050427 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">11/09/2025 15:57</td>
+<td align="center"  valign="top"><a alt="Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde" title="Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde" class="ancoraSigla">DIMEC</a></td>
+<td align="center"  valign="top"><a alt="Jéssica Matos de Sousa" title="Jéssica Matos de Sousa" class="ancoraSigla">jessica.matos</a></td>
+<td valign="top">Conclusão do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 284050384 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">11/09/2025 15:56</td>
+<td align="center"  valign="top"><a alt="Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde" title="Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde" class="ancoraSigla">DIMEC</a></td>
+<td align="center"  valign="top"><a alt="Jéssica Matos de Sousa" title="Jéssica Matos de Sousa" class="ancoraSigla">jessica.matos</a></td>
+<td valign="top">A pedido da área - CGSH, solicito que mantenha suspenso o trâmite do SEI nº 25000.039367/2023-49, até a assinatura do Despacho 0050377052, uma vez será solicitando a descontinuidade da solicitação de aditivo, em razão da não aceitação, por parte da empresa, da prorrogação contratual.<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 284049889 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">11/09/2025 15:55</td>
+<td align="center"  valign="top"><a alt="Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde" title="Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde" class="ancoraSigla">DIMEC</a></td>
+<td align="center"  valign="top"><a alt="Jéssica Matos de Sousa" title="Jéssica Matos de Sousa" class="ancoraSigla">jessica.matos</a></td>
+<td valign="top">Reabertura do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 284048293 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">11/09/2025 15:50</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Planejamento, Monitoramento e Controle Logístico" title="Coordenação-Geral de Planejamento, Monitoramento e Controle Logístico" class="ancoraSigla">CGPLAM</a></td>
+<td align="center"  valign="top"><a alt="Viviane Aparecida Bruno Inacio" title="Viviane Aparecida Bruno Inacio" class="ancoraSigla">viviane.inacio</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 283712758 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">09/09/2025 15:23</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Planejamento, Monitoramento e Controle Logístico" title="Coordenação-Geral de Planejamento, Monitoramento e Controle Logístico" class="ancoraSigla">CGPLAM</a></td>
+<td align="center"  valign="top"><a alt="Reginaldo Gonçalves" title="Reginaldo Gonçalves" class="ancoraSigla">goncalves.reginaldo</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde" title="Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde" class="ancoraSigla">DIMEC</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 283660976 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">09/09/2025 11:35</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Taciana Ribeiro Silva" title="Taciana Ribeiro Silva" class="ancoraSigla">taciana.ribeiro</a></td>
+<td valign="top">Envio de correspondência eletrônica <a href="controlador.php?acao=documento_visualizar&id_documento=53966483&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=f0197ebcdcc20b3d1085d37d76be0b85947e1e675802695b1bc624e524fd83c5" target="_blank" class="ancoraHistoricoProcesso">0050306726</a> (E-mail)<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 283403265 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">05/09/2025 16:38</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Taciana Ribeiro Silva" title="Taciana Ribeiro Silva" class="ancoraSigla">taciana.ribeiro</a></td>
+<td valign="top">Reabertura do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 281252018 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">20/08/2025 14:07</td>
+<td align="center"  valign="top"><a alt="Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde" title="Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde" class="ancoraSigla">DIMEC</a></td>
+<td align="center"  valign="top"><a alt="Hebert Henrique Miranda Ferreira" title="Hebert Henrique Miranda Ferreira" class="ancoraSigla">hebert.ferreira</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 281094059 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">19/08/2025 14:29</td>
+<td align="center"  valign="top"><a alt="Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde" title="Divisão de Monitoramento e Controle das Aquisições de Insumos Estratégicos para Saúde" class="ancoraSigla">DIMEC</a></td>
+<td align="center"  valign="top"><a alt="Vinícius Melasso Garcia Barros" title="Vinícius Melasso Garcia Barros" class="ancoraSigla">vinicius.barros</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Departamento de Logística em Saúde" title="Departamento de Logística em Saúde" class="ancoraSigla">DLOG</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 281093677 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">19/08/2025 14:27</td>
+<td align="center"  valign="top"><a alt="Departamento de Logística em Saúde" title="Departamento de Logística em Saúde" class="ancoraSigla">DLOG</a></td>
+<td align="center"  valign="top"><a alt="Vinícius Melasso Garcia Barros" title="Vinícius Melasso Garcia Barros" class="ancoraSigla">vinicius.barros</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 281085750 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">19/08/2025 13:57</td>
+<td align="center"  valign="top"><a alt="Departamento de Logística em Saúde" title="Departamento de Logística em Saúde" class="ancoraSigla">DLOG</a></td>
+<td align="center"  valign="top"><a alt="Maria Erivam Gonzaga Ferreira" title="Maria Erivam Gonzaga Ferreira" class="ancoraSigla">maria.erivam</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Demandas de Órgãos Externos da Atenção Especializada" title="Coordenação-Geral de Demandas de Órgãos Externos da Atenção Especializada" class="ancoraSigla">CGOEX/SAES</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 278212102 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">25/07/2025 14:23</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Vera Lucia Magalhães" title="Vera Lucia Magalhães" class="ancoraSigla">vera.magalhaes</a></td>
+<td valign="top">Conclusão do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 278175429 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">25/07/2025 11:09</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Demandas de Órgãos Externos da Atenção Especializada" title="Coordenação-Geral de Demandas de Órgãos Externos da Atenção Especializada" class="ancoraSigla">CGOEX/SAES</a></td>
+<td align="center"  valign="top"><a alt="Eva Lúcia Santiago Ferreira" title="Eva Lúcia Santiago Ferreira" class="ancoraSigla">eva.santiago</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 278139912 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">25/07/2025 08:37</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Cristina Xavier" title="Cristina Xavier" class="ancoraSigla">cristina.xavier</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 278119767 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">24/07/2025 17:50</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="José Roberto de Araújo Andrade" title="José Roberto de Araújo Andrade" class="ancoraSigla">joser.andrade</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Planejamento, Orçamento e Monitoramento da Execução Financeira" title="Coordenação-Geral de Planejamento, Orçamento e Monitoramento da Execução Financeira" class="ancoraSigla">CGPO/SAES</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 278119764 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">24/07/2025 17:50</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Demandas de Órgãos Externos da Atenção Especializada" title="Coordenação-Geral de Demandas de Órgãos Externos da Atenção Especializada" class="ancoraSigla">CGOEX/SAES</a></td>
+<td align="center"  valign="top"><a alt="José Roberto de Araújo Andrade" title="José Roberto de Araújo Andrade" class="ancoraSigla">joser.andrade</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Planejamento, Orçamento e Monitoramento da Execução Financeira" title="Coordenação-Geral de Planejamento, Orçamento e Monitoramento da Execução Financeira" class="ancoraSigla">CGPO/SAES</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 277909448 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">23/07/2025 14:23</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Planejamento, Orçamento e Monitoramento da Execução Financeira" title="Coordenação-Geral de Planejamento, Orçamento e Monitoramento da Execução Financeira" class="ancoraSigla">CGPO/SAES</a></td>
+<td align="center"  valign="top"><a alt="José Roberto de Araújo Andrade" title="José Roberto de Araújo Andrade" class="ancoraSigla">joser.andrade</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 277898577 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">23/07/2025 13:28</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Planejamento, Orçamento e Monitoramento da Execução Financeira" title="Coordenação-Geral de Planejamento, Orçamento e Monitoramento da Execução Financeira" class="ancoraSigla">CGPO/SAES</a></td>
+<td align="center"  valign="top"><a alt="Cristina Xavier" title="Cristina Xavier" class="ancoraSigla">cristina.xavier</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 277709672 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">22/07/2025 10:41</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Vera Lucia Magalhães" title="Vera Lucia Magalhães" class="ancoraSigla">vera.magalhaes</a></td>
+<td valign="top">Reabertura do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 264563925 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">31/03/2025 15:39</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Taciana Ribeiro Silva" title="Taciana Ribeiro Silva" class="ancoraSigla">taciana.ribeiro</a></td>
+<td valign="top">Conclusão do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 264397209 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">28/03/2025 15:21</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Leonardo Galhardo Santos" title="Leonardo Galhardo Santos" class="ancoraSigla">leonardo.galhardo</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 264395523 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">28/03/2025 15:14</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 264198270 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">27/03/2025 12:10</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 264142463 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">27/03/2025 08:41</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Leonardo Galhardo Santos" title="Leonardo Galhardo Santos" class="ancoraSigla">leonardo.galhardo</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 263871675 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">25/03/2025 12:23</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Taciana Ribeiro Silva" title="Taciana Ribeiro Silva" class="ancoraSigla">taciana.ribeiro</a></td>
+<td valign="top">Reabertura do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 258116505 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">30/01/2025 15:39</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Taciana Ribeiro Silva" title="Taciana Ribeiro Silva" class="ancoraSigla">taciana.ribeiro</a></td>
+<td valign="top">Conclusão do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 258115788 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">30/01/2025 15:36</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Taciana Ribeiro Silva" title="Taciana Ribeiro Silva" class="ancoraSigla">taciana.ribeiro</a></td>
+<td valign="top">Reabertura do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 254509727 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">23/12/2024 10:10</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Salete Pereira Salgado" title="Salete Pereira Salgado" class="ancoraSigla">salete.salgado</a></td>
+<td valign="top">Conclusão do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252939732 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">10/12/2024 12:25</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Cristina Xavier" title="Cristina Xavier" class="ancoraSigla">cristina.xavier</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252934414 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">10/12/2024 12:03</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Carlos Roberto Teixeira de Queiroz" title="Carlos Roberto Teixeira de Queiroz" class="ancoraSigla">carlos.queiroz</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Divisão de Execução Orçamentária" title="Divisão de Execução Orçamentária" class="ancoraSigla">DIVEO</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252908956 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">10/12/2024 10:50</td>
+<td align="center"  valign="top"><a alt="Divisão de Execução Orçamentária" title="Divisão de Execução Orçamentária" class="ancoraSigla">DIVEO</a></td>
+<td align="center"  valign="top"><a alt="Carlos Roberto Teixeira de Queiroz" title="Carlos Roberto Teixeira de Queiroz" class="ancoraSigla">carlos.queiroz</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252899421 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">10/12/2024 10:19</td>
+<td align="center"  valign="top"><a alt="Divisão de Execução Orçamentária" title="Divisão de Execução Orçamentária" class="ancoraSigla">DIVEO</a></td>
+<td align="center"  valign="top"><a alt="Francilene da Silva Nascimento" title="Francilene da Silva Nascimento" class="ancoraSigla">francilene.silva</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação de Gestão Técnica e Administrativa" title="Coordenação de Gestão Técnica e Administrativa" class="ancoraSigla">COGAD/SPO</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252898734 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">10/12/2024 10:17</td>
+<td align="center"  valign="top"><a alt="Coordenação de Gestão Técnica e Administrativa" title="Coordenação de Gestão Técnica e Administrativa" class="ancoraSigla">COGAD/SPO</a></td>
+<td align="center"  valign="top"><a alt="Francilene da Silva Nascimento" title="Francilene da Silva Nascimento" class="ancoraSigla">francilene.silva</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252895508 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">10/12/2024 10:08</td>
+<td align="center"  valign="top"><a alt="Coordenação de Gestão Técnica e Administrativa" title="Coordenação de Gestão Técnica e Administrativa" class="ancoraSigla">COGAD/SPO</a></td>
+<td align="center"  valign="top"><a alt="Rafael Gasperin Mazzoleni" title="Rafael Gasperin Mazzoleni" class="ancoraSigla">rafael.mazzoleni</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Subsecretaria de Planejamento e Orçamento" title="Subsecretaria de Planejamento e Orçamento" class="ancoraSigla">SPO</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252776646 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">09/12/2024 14:34</td>
+<td align="center"  valign="top"><a alt="Subsecretaria de Planejamento e Orçamento" title="Subsecretaria de Planejamento e Orçamento" class="ancoraSigla">SPO</a></td>
+<td align="center"  valign="top"><a alt="Rafael Gasperin Mazzoleni" title="Rafael Gasperin Mazzoleni" class="ancoraSigla">rafael.mazzoleni</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252763169 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">09/12/2024 13:42</td>
+<td align="center"  valign="top"><a alt="Subsecretaria de Planejamento e Orçamento" title="Subsecretaria de Planejamento e Orçamento" class="ancoraSigla">SPO</a></td>
+<td align="center"  valign="top"><a alt="Carlos Roberto Teixeira de Queiroz" title="Carlos Roberto Teixeira de Queiroz" class="ancoraSigla">carlos.queiroz</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Divisão de Execução Orçamentária" title="Divisão de Execução Orçamentária" class="ancoraSigla">DIVEO</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252759960 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">09/12/2024 13:25</td>
+<td align="center"  valign="top"><a alt="Divisão de Execução Orçamentária" title="Divisão de Execução Orçamentária" class="ancoraSigla">DIVEO</a></td>
+<td align="center"  valign="top"><a alt="Paulo Jorge Andrade Silva" title="Paulo Jorge Andrade Silva" class="ancoraSigla">paulo.andrade</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252743801 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">09/12/2024 11:57</td>
+<td align="center"  valign="top"><a alt="Divisão de Execução Orçamentária" title="Divisão de Execução Orçamentária" class="ancoraSigla">DIVEO</a></td>
+<td align="center"  valign="top"><a alt="Aparecida de Araújo Morais" title="Aparecida de Araújo Morais" class="ancoraSigla">aparecida.morais</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Execução Orçamentária e Financeira" title="Coordenação-Geral de Execução Orçamentária e Financeira" class="ancoraSigla">CGOF/DLOG</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252728375 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">09/12/2024 11:08</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Execução Orçamentária e Financeira" title="Coordenação-Geral de Execução Orçamentária e Financeira" class="ancoraSigla">CGOF/DLOG</a></td>
+<td align="center"  valign="top"><a alt="Aparecida de Araújo Morais" title="Aparecida de Araújo Morais" class="ancoraSigla">aparecida.morais</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252724127 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">09/12/2024 10:55</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Execução Orçamentária e Financeira" title="Coordenação-Geral de Execução Orçamentária e Financeira" class="ancoraSigla">CGOF/DLOG</a></td>
+<td align="center"  valign="top"><a alt="Eloiza Cristina Ribeiro" title="Eloiza Cristina Ribeiro" class="ancoraSigla">eloiza.ribeiro</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Departamento de Logística em Saúde" title="Departamento de Logística em Saúde" class="ancoraSigla">DLOG</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252141368 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">04/12/2024 10:16</td>
+<td align="center"  valign="top"><a alt="Departamento de Logística em Saúde" title="Departamento de Logística em Saúde" class="ancoraSigla">DLOG</a></td>
+<td align="center"  valign="top"><a alt="Vinícius Melasso Garcia Barros" title="Vinícius Melasso Garcia Barros" class="ancoraSigla">vinicius.barros</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252134812 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">04/12/2024 09:52</td>
+<td align="center"  valign="top"><a alt="Departamento de Logística em Saúde" title="Departamento de Logística em Saúde" class="ancoraSigla">DLOG</a></td>
+<td align="center"  valign="top"><a alt="Cristina Xavier" title="Cristina Xavier" class="ancoraSigla">cristina.xavier</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252134400 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">04/12/2024 09:50</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Cristina Xavier" title="Cristina Xavier" class="ancoraSigla">cristina.xavier</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252130517 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">04/12/2024 09:34</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Carlos Roberto Teixeira de Queiroz" title="Carlos Roberto Teixeira de Queiroz" class="ancoraSigla">carlos.queiroz</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Divisão de Execução Orçamentária" title="Divisão de Execução Orçamentária" class="ancoraSigla">DIVEO</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252129612 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">04/12/2024 09:30</td>
+<td align="center"  valign="top"><a alt="Divisão de Execução Orçamentária" title="Divisão de Execução Orçamentária" class="ancoraSigla">DIVEO</a></td>
+<td align="center"  valign="top"><a alt="Carlos Roberto Teixeira de Queiroz" title="Carlos Roberto Teixeira de Queiroz" class="ancoraSigla">carlos.queiroz</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252128783 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">04/12/2024 09:26</td>
+<td align="center"  valign="top"><a alt="Divisão de Execução Orçamentária" title="Divisão de Execução Orçamentária" class="ancoraSigla">DIVEO</a></td>
+<td align="center"  valign="top"><a alt="Aparecida de Araújo Morais" title="Aparecida de Araújo Morais" class="ancoraSigla">aparecida.morais</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Execução Orçamentária e Financeira" title="Coordenação-Geral de Execução Orçamentária e Financeira" class="ancoraSigla">CGOF/DLOG</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252109937 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">04/12/2024 07:01</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Execução Orçamentária e Financeira" title="Coordenação-Geral de Execução Orçamentária e Financeira" class="ancoraSigla">CGOF/DLOG</a></td>
+<td align="center"  valign="top"><a alt="Carlos Roberto Teixeira de Queiroz" title="Carlos Roberto Teixeira de Queiroz" class="ancoraSigla">carlos.queiroz</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 252108488 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">03/12/2024 23:45</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Execução Orçamentária e Financeira" title="Coordenação-Geral de Execução Orçamentária e Financeira" class="ancoraSigla">CGOF/DLOG</a></td>
+<td align="center"  valign="top"><a alt="Cristina Xavier" title="Cristina Xavier" class="ancoraSigla">cristina.xavier</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 251501899 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">28/11/2024 16:10</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Salete Pereira Salgado" title="Salete Pereira Salgado" class="ancoraSigla">salete.salgado</a></td>
+<td valign="top">Reabertura do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 241738459 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">03/09/2024 11:10</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Taciana Ribeiro Silva" title="Taciana Ribeiro Silva" class="ancoraSigla">taciana.ribeiro</a></td>
+<td valign="top">Conclusão do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 241737177 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">03/09/2024 11:06</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Taciana Ribeiro Silva" title="Taciana Ribeiro Silva" class="ancoraSigla">taciana.ribeiro</a></td>
+<td valign="top">Envio de correspondência eletrônica <a href="controlador.php?acao=documento_visualizar&id_documento=46178026&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=0d0f9c33b62ff54477e67947c17600e7a1b9e5ba8c2a271dfd78de5c68ad0654" target="_blank" class="ancoraHistoricoProcesso">0042956583</a> (E-mail)<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 240449441 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">21/08/2024 16:41</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Cristina Xavier" title="Cristina Xavier" class="ancoraSigla">cristina.xavier</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 240434116 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">21/08/2024 15:46</td>
+<td align="center"  valign="top"><a alt="Divisão de Execução Orçamentária" title="Divisão de Execução Orçamentária" class="ancoraSigla">DIVEO</a></td>
+<td align="center"  valign="top"><a alt="Paulo Jorge Andrade Silva" title="Paulo Jorge Andrade Silva" class="ancoraSigla">paulo.andrade</a></td>
+<td valign="top">Conclusão do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 240429537 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">21/08/2024 15:30</td>
+<td align="center"  valign="top"><a alt="Coordenação de Controle e Acompanhamento Logístico de Insumos Estratégicos para Saúde" title="Coordenação de Controle e Acompanhamento Logístico de Insumos Estratégicos para Saúde" class="ancoraSigla">COAL</a></td>
+<td align="center"  valign="top"><a alt="Dayanni Nogueira Castro" title="Dayanni Nogueira Castro" class="ancoraSigla">dayanni.castro</a></td>
+<td valign="top">Conclusão do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 240429502 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">21/08/2024 15:30</td>
+<td align="center"  valign="top"><a alt="Coordenação de Controle e Acompanhamento Logístico de Insumos Estratégicos para Saúde" title="Coordenação de Controle e Acompanhamento Logístico de Insumos Estratégicos para Saúde" class="ancoraSigla">COAL</a></td>
+<td align="center"  valign="top"><a alt="Dayanni Nogueira Castro" title="Dayanni Nogueira Castro" class="ancoraSigla">dayanni.castro</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 240420514 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">21/08/2024 15:00</td>
+<td align="center"  valign="top"><a alt="Divisão de Execução Orçamentária" title="Divisão de Execução Orçamentária" class="ancoraSigla">DIVEO</a></td>
+<td align="center"  valign="top"><a alt="Paulo Jorge Andrade Silva" title="Paulo Jorge Andrade Silva" class="ancoraSigla">paulo.andrade</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 240418684 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">21/08/2024 14:54</td>
+<td align="center"  valign="top"><a alt="Divisão de Importação de Insumos Estratégicos para Saúde" title="Divisão de Importação de Insumos Estratégicos para Saúde" class="ancoraSigla">DIIMP</a></td>
+<td align="center"  valign="top"><a alt="Lilian Almeida Araujo de Melo Sá" title="Lilian Almeida Araujo de Melo Sá" class="ancoraSigla">lilian.sa</a></td>
+<td valign="top">Conclusão do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 240418093 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">21/08/2024 14:53</td>
+<td align="center"  valign="top"><a alt="Divisão de Importação de Insumos Estratégicos para Saúde" title="Divisão de Importação de Insumos Estratégicos para Saúde" class="ancoraSigla">DIIMP</a></td>
+<td align="center"  valign="top"><a alt="Lilian Almeida Araujo de Melo Sá" title="Lilian Almeida Araujo de Melo Sá" class="ancoraSigla">lilian.sa</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 240414166 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">21/08/2024 14:46</td>
+<td align="center"  valign="top"><a alt="Divisão de Execução Orçamentária" title="Divisão de Execução Orçamentária" class="ancoraSigla">DIVEO</a></td>
+<td align="center"  valign="top"><a alt="Suelma da Silva Patricio" title="Suelma da Silva Patricio" class="ancoraSigla">suelma.patricio</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Execução Orçamentária e Financeira" title="Coordenação-Geral de Execução Orçamentária e Financeira" class="ancoraSigla">CGOF/DLOG</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 240413914 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">21/08/2024 14:45</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Execução Orçamentária e Financeira" title="Coordenação-Geral de Execução Orçamentária e Financeira" class="ancoraSigla">CGOF/DLOG</a></td>
+<td align="center"  valign="top"><a alt="Suelma da Silva Patricio" title="Suelma da Silva Patricio" class="ancoraSigla">suelma.patricio</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 240412967 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">21/08/2024 14:42</td>
+<td align="center"  valign="top"><a alt="Divisão de Importação de Insumos Estratégicos para Saúde" title="Divisão de Importação de Insumos Estratégicos para Saúde" class="ancoraSigla">DIIMP</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 240412965 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">21/08/2024 14:42</td>
+<td align="center"  valign="top"><a alt="Coordenação de Controle e Acompanhamento Logístico de Insumos Estratégicos para Saúde" title="Coordenação de Controle e Acompanhamento Logístico de Insumos Estratégicos para Saúde" class="ancoraSigla">COAL</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 240412963 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">21/08/2024 14:42</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Execução Orçamentária e Financeira" title="Coordenação-Geral de Execução Orçamentária e Financeira" class="ancoraSigla">CGOF/DLOG</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 240412961 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">21/08/2024 14:42</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Sangue e Hemoderivados" title="Coordenação-Geral de Sangue e Hemoderivados" class="ancoraSigla">CGSH</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 240230549 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">20/08/2024 14:11</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Envio de correspondência eletrônica <a href="controlador.php?acao=documento_visualizar&id_documento=45897557&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=84dc1d5274955cd334032f387cc6b229ac9207a2944bb31c45182b969b751da2" target="_blank" class="ancoraHistoricoProcesso">0042691746</a> (E-mail)<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239766728 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">15/08/2024 16:27</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Liberada assinatura externa para o usuário Monique Rodrigues Fontoura Monteiro (monique@medfutura.com.br) no documento <a href="controlador.php?acao=documento_visualizar&id_documento=45811085&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=dfe0c978dc7becf04e5c1d40ac3a0b9fca656900f536c011e36c4b57fbb2f3b9" target="_blank" class="ancoraHistoricoProcesso">0042609622</a> (Termo Aditivo) até 20/08/2024 (5 dias). Sem acesso ao processo.<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239766519 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">15/08/2024 16:26</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Liberada assinatura externa para o usuário Monique Rodrigues Fontoura Monteiro (monique@medfutura.com.br) no documento <a href="controlador.php?acao=documento_visualizar&id_documento=45811001&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=95251869d91561ee09498c900a2d940a9219748043730a4e1191f882594bda73" target="_blank" class="ancoraHistoricoProcesso">0042609545</a> (Nota) até 20/08/2024 (5 dias). Com visualização parcial do processo.<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239766265 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">15/08/2024 16:24</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Liberada assinatura externa para o usuário Valter Luís Fernandes de Carvalhães Pinheiro (valterpinheiro@medicamentosfutura.com.br) no documento <a href="controlador.php?acao=documento_visualizar&id_documento=45811085&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=dfe0c978dc7becf04e5c1d40ac3a0b9fca656900f536c011e36c4b57fbb2f3b9" target="_blank" class="ancoraHistoricoProcesso">0042609622</a> (Termo Aditivo) até 20/08/2024 (5 dias). Sem acesso ao processo.<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239765933 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">15/08/2024 16:24</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Liberada assinatura externa para o usuário Valter Luís Fernandes de Carvalhães Pinheiro (valterpinheiro@medicamentosfutura.com.br) no documento <a href="controlador.php?acao=documento_visualizar&id_documento=45811001&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=95251869d91561ee09498c900a2d940a9219748043730a4e1191f882594bda73" target="_blank" class="ancoraHistoricoProcesso">0042609545</a> (Nota) até 20/08/2024 (5 dias). Com visualização parcial do processo.<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239374918 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">13/08/2024 11:53</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Liberada assinatura externa para o usuário Monique Rodrigues Fontoura Monteiro (monique@medfutura.com.br) no documento <a href="controlador.php?acao=documento_visualizar&id_documento=45534033&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=91bc0290598f90ea4df89e45cc1c3fac35b2d885b3b4ca2b178dfc7fb75cefac" target="_blank" class="ancoraHistoricoProcesso">0042348096</a> (Termo Aditivo) até 17/08/2024 (4 dias). Sem acesso ao processo.<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239374583 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">13/08/2024 11:52</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Liberada assinatura externa para o usuário Valter Luís Fernandes de Carvalhães Pinheiro (valterpinheiro@medicamentosfutura.com.br) no documento <a href="controlador.php?acao=documento_visualizar&id_documento=45534033&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=91bc0290598f90ea4df89e45cc1c3fac35b2d885b3b4ca2b178dfc7fb75cefac" target="_blank" class="ancoraHistoricoProcesso">0042348096</a> (Termo Aditivo) até 17/08/2024 (4 dias). Sem acesso ao processo.<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239374239 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">13/08/2024 11:51</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Liberada assinatura externa para o usuário Monique Rodrigues Fontoura Monteiro (monique@medfutura.com.br) no documento <a href="controlador.php?acao=documento_visualizar&id_documento=45720101&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=de4b8287ae46090edc8c52a926fb1bd5b08c87b31621ab63726507249dfbd374" target="_blank" class="ancoraHistoricoProcesso">0042523557</a> (Nota) até 17/08/2024 (4 dias). Com visualização parcial do processo.<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239373809 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">13/08/2024 11:50</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Liberada assinatura externa para o usuário Valter Luís Fernandes de Carvalhães Pinheiro (valterpinheiro@medicamentosfutura.com.br) no documento <a href="controlador.php?acao=documento_visualizar&id_documento=45720101&infra_sistema=100000100&infra_unidade_atual=110002528&infra_hash=de4b8287ae46090edc8c52a926fb1bd5b08c87b31621ab63726507249dfbd374" target="_blank" class="ancoraHistoricoProcesso">0042523557</a> (Nota) até 17/08/2024 (4 dias). Com visualização parcial do processo.<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239285532 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/08/2024 17:37</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Cancelada liberação de assinatura externa para o usuário Monique Rodrigues Fontoura Monteiro (monique@medfutura.com.br) no documento <a href="javascript:void(0);" onclick="alert('Este documento foi excluído.');" class="ancoraHistoricoProcesso">0042515048</a>.<br />
+Já apresentou garantia<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239285411 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/08/2024 17:36</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Cancelada liberação de assinatura externa para o usuário Valter Luís Fernandes de Carvalhães Pinheiro (valterpinheiro@medicamentosfutura.com.br) no documento <a href="javascript:void(0);" onclick="alert('Este documento foi excluído.');" class="ancoraHistoricoProcesso">0042515048</a>.<br />
+Já apresentou garantia<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239268609 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/08/2024 16:28</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239260185 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/08/2024 15:58</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Igara Lúcia Nunes Sallaberry Cayres" title="Igara Lúcia Nunes Sallaberry Cayres" class="ancoraSigla">igara.cayres</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Departamento de Logística em Saúde" title="Departamento de Logística em Saúde" class="ancoraSigla">DLOG</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239259951 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/08/2024 15:57</td>
+<td align="center"  valign="top"><a alt="Departamento de Logística em Saúde" title="Departamento de Logística em Saúde" class="ancoraSigla">DLOG</a></td>
+<td align="center"  valign="top"><a alt="Igara Lúcia Nunes Sallaberry Cayres" title="Igara Lúcia Nunes Sallaberry Cayres" class="ancoraSigla">igara.cayres</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239243413 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/08/2024 15:05</td>
+<td align="center"  valign="top"><a alt="Departamento de Logística em Saúde" title="Departamento de Logística em Saúde" class="ancoraSigla">DLOG</a></td>
+<td align="center"  valign="top"><a alt="Juliana Pereira dos Santos" title="Juliana Pereira dos Santos" class="ancoraSigla">juliana.psantos</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Análise Jurídica de Licitações, Contratos e Instrumentos Congêneres" title="Coordenação-Geral de Análise Jurídica de Licitações, Contratos e Instrumentos Congêneres" class="ancoraSigla">CGLICI/CONJUR</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239230341 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/08/2024 14:24</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Liberada assinatura externa para o usuário Monique Rodrigues Fontoura Monteiro (monique@medfutura.com.br) no documento <a href="javascript:void(0);" onclick="alert('Este documento foi excluído.');" class="ancoraHistoricoProcesso">0042515048</a> até 15/08/2024 (3 dias). Com visualização parcial do processo.<br />
+(cancelada por <a href="javascript:void(0);" alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a> em 12/08/2024 17:37)<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 239230064 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">12/08/2024 14:23</td>
+<td align="center"  valign="top"><a alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Liberada assinatura externa para o usuário Valter Luís Fernandes de Carvalhães Pinheiro (valterpinheiro@medicamentosfutura.com.br) no documento <a href="javascript:void(0);" onclick="alert('Este documento foi excluído.');" class="ancoraHistoricoProcesso">0042515048</a> até 15/08/2024 (3 dias). Com visualização parcial do processo.<br />
+(cancelada por <a href="javascript:void(0);" alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a> em 12/08/2024 17:36)<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 238731181 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">07/08/2024 09:11</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Análise Jurídica de Licitações, Contratos e Instrumentos Congêneres" title="Coordenação-Geral de Análise Jurídica de Licitações, Contratos e Instrumentos Congêneres" class="ancoraSigla">CGLICI/CONJUR</a></td>
+<td align="center"  valign="top"><a alt="Rafael Carrazzoni Mansur" title="Rafael Carrazzoni Mansur" class="ancoraSigla">rafael.mansur</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 238704535 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">06/08/2024 18:27</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Análise Jurídica de Licitações, Contratos e Instrumentos Congêneres" title="Coordenação-Geral de Análise Jurídica de Licitações, Contratos e Instrumentos Congêneres" class="ancoraSigla">CGLICI/CONJUR</a></td>
+<td align="center"  valign="top"><a alt="Magna Rosângela Gomes " title="Magna Rosângela Gomes " class="ancoraSigla">magna.gomes</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Divisão de Instrução e Destinação de Processos" title="Divisão de Instrução e Destinação de Processos" class="ancoraSigla">DIDEP/CONJUR</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 238703314 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">06/08/2024 18:16</td>
+<td align="center"  valign="top"><a alt="Divisão de Instrução e Destinação de Processos" title="Divisão de Instrução e Destinação de Processos" class="ancoraSigla">DIDEP/CONJUR</a></td>
+<td align="center"  valign="top"><a alt="Magna Rosângela Gomes " title="Magna Rosângela Gomes " class="ancoraSigla">magna.gomes</a></td>
+<td valign="top">Disponibilizado acesso externo para Coordenação-Geral de Análise Jurídica de Licitações, Contratos e Instrumentos Congêneres (magna.gomes@saude.gov.br) até 22/12/2051 (9999 dias). Com visualização integral do processo.<br />
+ACESSO A CGLICI/CONJUR<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 238685114 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">06/08/2024 16:31</td>
+<td align="center"  valign="top"><a alt="Divisão de Instrução e Destinação de Processos" title="Divisão de Instrução e Destinação de Processos" class="ancoraSigla">DIDEP/CONJUR</a></td>
+<td align="center"  valign="top"><a alt="Enayle Pignata Vieira" title="Enayle Pignata Vieira" class="ancoraSigla">enayle.vieira</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 238649286 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">06/08/2024 14:28</td>
+<td align="center"  valign="top"><a alt="Divisão de Instrução e Destinação de Processos" title="Divisão de Instrução e Destinação de Processos" class="ancoraSigla">DIDEP/CONJUR</a></td>
+<td align="center"  valign="top"><a alt="Michelle Araujo Soares" title="Michelle Araujo Soares" class="ancoraSigla">michelle.araujo</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Divisão de Contratos de Insumos Estratégicos para Saúde" title="Divisão de Contratos de Insumos Estratégicos para Saúde" class="ancoraSigla">DICON</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 238241270 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">01/08/2024 15:14</td>
+<td align="center"  valign="top"><a alt="Coordenação de Pagamento" title="Coordenação de Pagamento" class="ancoraSigla">COPAG/DLOG</a></td>
+<td align="center"  valign="top"><a alt="Mônica Cristina Moraes e Souza Araújo" title="Mônica Cristina Moraes e Souza Araújo" class="ancoraSigla">monica.moraes</a></td>
+<td valign="top">Conclusão do processo na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 238100968 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">31/07/2024 15:06</td>
+<td align="center"  valign="top"><a alt="Coordenação de Pagamento" title="Coordenação de Pagamento" class="ancoraSigla">COPAG/DLOG</a></td>
+<td align="center"  valign="top"><a alt="Patricia Portela de Aguiar" title="Patricia Portela de Aguiar" class="ancoraSigla">patricia.aguiar</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 238100571 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">31/07/2024 15:04</td>
+<td align="center"  valign="top"><a alt="Coordenação de Pagamento" title="Coordenação de Pagamento" class="ancoraSigla">COPAG/DLOG</a></td>
+<td align="center"  valign="top"><a alt="Aparecida de Araújo Morais" title="Aparecida de Araújo Morais" class="ancoraSigla">aparecida.morais</a></td>
+<td valign="top">Processo remetido pela unidade <a href="javascript:void(0);" alt="Coordenação-Geral de Execução Orçamentária e Financeira" title="Coordenação-Geral de Execução Orçamentária e Financeira" class="ancoraSigla">CGOF/DLOG</a><span style="line-height:.5em"><br /></span></td></tr>
+
+<!-- 238092914 -->
+<tr class="andamentoConcluido">
+<td align="center" valign="top">31/07/2024 14:32</td>
+<td align="center"  valign="top"><a alt="Coordenação-Geral de Execução Orçamentária e Financeira" title="Coordenação-Geral de Execução Orçamentária e Financeira" class="ancoraSigla">CGOF/DLOG</a></td>
+<td align="center"  valign="top"><a alt="Aparecida de Araújo Morais" title="Aparecida de Araújo Morais" class="ancoraSigla">aparecida.morais</a></td>
+<td valign="top">Processo recebido na unidade<span style="line-height:.5em"><br /></span></td></tr></table>
+</div>
+
+<input type="hidden" id="hdnInfraNroItens" name="hdnInfraNroItens" value="0"/>
+<input type="hidden" id="hdnInfraItemId" name="hdnInfraItemId" value=""/>
+<input type="hidden" id="hdnInfraItens" name="hdnInfraItens" value=""/>
+<input type="hidden" id="hdnInfraItensHash" name="hdnInfraItensHash" value=""/>
+<input type="hidden" id="hdnInfraItensSelecionados" name="hdnInfraItensSelecionados" value=""/>
+
+<input type="hidden" id="hdnInfraSelecoes" name="hdnInfraSelecoes" value="Infra"/>
+<div id="divInfraAreaPaginacaoInferior" class="infraAreaPaginacao">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="selInfraPaginacaoInferior" name="selInfraPaginacaoInferior" onchange="infraAcaoPaginar('=',this.value,'Infra', null);" class="infraSelect" tabindex="32700" aria-label="Escolher Página" style="display:inline;">
+<option value="0" selected="selected" >1</option>
+<option value="1">2</option>
+<option value="2">3</option>
+</select>&nbsp;&nbsp;
+<a id="lnkInfraProximaPaginaInferior" href="javascript:void(0);" onclick="infraAcaoPaginar('+',0,'Infra', null);" title="Próxima Página" tabindex="32700"><img src="/infra_css/svg/paginacao_proxima.svg" title="Próxima Página" alt="Próxima Página" class="infraImg"/></a>&nbsp;&nbsp;
+
+&nbsp;<a id="lnkInfraUltimaPaginaInferior" href="javascript:void(0);" onclick="infraAcaoPaginar('=',2,'Infra', null);" title="Última Página" tabindex="32700"><img src="/infra_css/svg/paginacao_ultima.svg" title="Última Página" alt="Última Página" class="infraImg"/></a></div>
+
+<input type="hidden" id="hdnInfraPaginaAtual" name="hdnInfraPaginaAtual" value="0"/>
+<input type="hidden" id="hdnInfraHashCriterios" name="hdnInfraHashCriterios" value="648278a7c18781c0201c77a1ba8d48d2"/>
+  
+  <input type="hidden" id="hdnTipoHistorico" name="hdnTipoHistorico" value="R" />
+
+</form>
+</div>
+</div>
+</div>
+<input type="hidden" id="hdnInfraPrefixoCookie" name="hdnInfraPrefixoCookie" value="MS_SEI_luiz_smorais"/>
+<div id="infraDivImpressao" class="infraImpressao"></div>
+<div id="infraBs-xs" class="d-none d-xs-block"></div>
+<div id="infraBs-sm" class="d-none d-sm-block"></div>
+<div id="infraBs-md" class="d-none d-md-block"></div>
+<div id="infraBs-lg" class="d-none d-lg-block"></div>
+</body>
+</html>
+

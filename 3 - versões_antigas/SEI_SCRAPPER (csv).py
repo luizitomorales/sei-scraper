@@ -1,4 +1,4 @@
-## SEI_SCRAPPER (csv).py - VERSÃO CORRIGIDA DEFINITIVA (23/11/2025)
+## SEI_SCRAPPER (csv).py - VERSÃO CORRIGIDA DEFINITIVA (26/11/2025)
 
 import os
 import asyncio
@@ -11,7 +11,7 @@ from typing import List, Dict
 from datetime import datetime
 
 from dotenv import load_dotenv
-from playwright.async_api import async_playwright, TimeoutError as PWTimeout
+from playwright.async_api import async_playwright, TimeoutError as PWTimeout, Page   # ← CORRIGIDO AQUI
 import pandas as pd
 
 # =============================================
@@ -60,38 +60,49 @@ class Andamento:
 # =============================================
 def carregar_processos() -> List[str]:
     csv_path = BASE_DIR / "processos.csv"
+    
     if not csv_path.exists():
-        alt_path = Path(r"[lixeira]\processos\Relatorio de Aquisiçoes.csv")
+        alt_path = Path(r"[lixeira]/processos/Relatorio de Aquisiçoes.csv")
         if alt_path.exists():
             csv_path = alt_path
         else:
-            logging.error(f"CSV não encontrado: {csv_path}")
+            logging.error(f"CSV não encontrado no caminho principal nem no alternativo:")
+            logging.error(f"   → {csv_path}")
+            logging.error(f"   → {alt_path}")
             return []
 
+    # =============================================
+    # A partir daqui o CSV foi encontrado em csv_path
+    # =============================================
     try:
         df = None
         last_exc = None
         for enc in ("utf-8", "utf-8-sig", "cp1252", "latin-1"):
             try:
                 df = pd.read_csv(csv_path, dtype=str, encoding=enc, sep=None, engine="python")
-                logging.info(f"CSV lido com encoding={enc}")
+                logging.info(f"CSV lido com sucesso → {csv_path} (encoding={enc})")
                 break
             except Exception as e_read:
                 last_exc = e_read
+                
         if df is None:
             raise last_exc
 
+        # Detecta a coluna que contém o número do processo
         col = next(
-            (c for c in df.columns if any(kw in str(c).lower() for kw in ["processo", "nº", "sei"])),
+            (c for c in df.columns if any(kw in str(c).lower() for kw in ["processo", "nº", "sei", "protocolo"])),
             df.columns[0]
         )
+
         processos = df[col].astype(str).str.strip().tolist()
         processos = [p for p in processos if p and p != "nan" and len(p) > 10]
-        processos = list(dict.fromkeys(processos))
+        processos = list(dict.fromkeys(processos))  # remove duplicados mantendo ordem
+
         logging.info(f"{len(processos)} processos carregados do CSV")
         return processos
+
     except Exception as e:
-        logging.error(f"Erro ao ler CSV: {e}")
+        logging.error(f"Erro ao ler o CSV {csv_path}: {e}")
         return []
 
 # =============================================
@@ -144,33 +155,33 @@ class SEIScraper:
             await page.wait_for_load_state("networkidle", timeout=90000)
             await asyncio.sleep(2)
 
-            # Frame esquerdo: abre andamento
-            frame_arv = page.frame_locator("#ifrArvore").first
-            await frame_arv.wait_for_selector("a[title='Consultar Andamento']", state="visible", timeout=60000)
-            await frame_arv.locator("a[title='Consultar Andamento']").click(timeout=30000)
+            # === Frame esquerdo: Consultar Andamento ===
+            frame_arvore = page.frame_locator("#ifrArvore")
+            await frame_arvore.locator("a[title='Consultar Andamento']").wait_for(state="visible", timeout=60000)
+            await frame_arvore.locator("a[title='Consultar Andamento']").click(timeout=30000)
             await asyncio.sleep(2)
 
-            # Frame direito: histórico completo
-            frame_vis = page.frame_locator("#ifrVisualizacao").first
-            await frame_vis.wait_for_selector("text=Ver histórico completo", state="visible", timeout=60000)
-            await frame_vis.get_by_text("Ver histórico completo").click(timeout=30000)
+            # === Frame direito: Ver histórico completo ===
+            frame_visualizacao = page.frame_locator("#ifrVisualizacao")
+            await frame_visualizacao.get_by_text("Ver histórico completo").wait_for(state="visible", timeout=60000)
+            await frame_visualizacao.get_by_text("Ver histórico completo").click(timeout=30000)
             await asyncio.sleep(2)
 
-            # Espera tabela
-            await frame_vis.wait_for_selector("#tblHistorico", state="visible", timeout=60000)
+            # === Espera a tabela final aparecer ===
+            await frame_visualizacao.locator("#tblHistorico").wait_for(state="visible", timeout=60000)
             await asyncio.sleep(1)
 
             pagina = 1
             while True:
-                # Extrai linhas
-                tabela = frame_vis.locator("#tblHistorico")
-                rows = await tabela.locator("tbody tr").all()
+                # Extrai todas as linhas da página atual
+                rows = await frame_visualizacao.locator("#tblHistorico tbody tr").all()
 
                 for row in rows:
                     cols = await row.locator("td").all_text_contents()
                     if len(cols) < 6:
                         continue
                     docs = await row.locator("td:nth-child(6) a, td:nth-child(7) a").all_text_contents()
+
                     historico.append(Andamento(
                         data=cols[0].strip(),
                         hora=cols[1].strip(),
@@ -178,26 +189,29 @@ class SEIScraper:
                         usuario=cols[3].strip(),
                         acao=cols[4].strip(),
                         observacao=cols[5].split("\n", 1)[0].strip(),
-                        documentos=" | ".join(docs),
+                        documentos=" | ".join(d.strip() for d in docs) if docs else "",
                         pagina=pagina
                     ).__dict__)
 
-                # Paginação no frame_vis
+                # === Paginação ===
                 try:
-                    next_btn = frame_vis.locator("#lnkInfraProximaPaginaSuperior img")
-                    src = await next_btn.get_attribute("src")
-                    if "disabled" in src or "off" in src:
+                    img_src = await frame_visualizacao.locator("#lnkInfraProximaPaginaSuperior img") \
+                                                    .get_attribute("src", timeout=8000)
+                    if img_src and ("disabled" in img_src.lower() or "off" in img_src.lower()):
                         break
-                    await frame_vis.locator("#lnkInfraProximaPaginaSuperior").click()
+                    await frame_visualizacao.locator("#lnkInfraProximaPaginaSuperior").click(timeout=15000)
                     await asyncio.sleep(2)
                     pagina += 1
                 except:
                     break
 
+            logging.info(f"{numero}: {len(historico)} andamentos extraídos com sucesso")
+
         except Exception as e:
-            logging.error(f"Erro ao extrair {numero}: {e}")
+            logging.error(f"Erro ao extrair {numero}: {str(e)}")
 
         return historico
+
 
     async def run(self):
         processos = carregar_processos()
@@ -221,7 +235,7 @@ class SEIScraper:
             await self.login(login_page)
             await login_page.close()
 
-            # Workers
+            # Worker para cada processo
             async def worker(proc: str):
                 async with semaphore:
                     page = await context.new_page()
@@ -236,6 +250,14 @@ class SEIScraper:
 
             await context.close()
             await browser.close()
+
+        # Salva JSON final
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        arquivo_final = DOWNLOADS_DIR / f"sei_historico_{self.org}_{timestamp}.json"
+        with open(arquivo_final, "w", encoding="utf-8") as f:
+            json.dump(resultados, f, indent=2, ensure_ascii=False)
+
+        logging.info(f"FINALIZADO! JSON salvo em: {arquivo_final}")
 
         # Salva JSON
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
