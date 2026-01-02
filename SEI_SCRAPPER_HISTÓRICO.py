@@ -191,7 +191,7 @@ class SEIScraper:
         self.salvar_historico(coleta)
 
         
-        return historico
+        return [    ]
 
 def salvar_historico(self, coleta: Dict):
     data = coleta["timestamp_coleta"][:10]  # YYYY-MM-DD
@@ -222,16 +222,34 @@ async def main():
         await scraper.login(page)
 
         for proc in processos:
-            try:
-                await scraper.processar_processo(page, proc)
-            except Exception as e:
-                logging.error(f"[{proc}] erro geral: {e}")
-
-            # reset seguro
-            await page.goto("https://sei.saude.gov.br/")
-            await page.wait_for_timeout(800)
-
-        await browser.close()
+            tentativas = 2
+            sucesso = False
+        
+            for tentativa in range(1, tentativas + 1):
+                try:
+                    logging.info(f"[{proc}] Tentativa {tentativa}/{tentativas}")
+                    resultado = await scraper.processar_processo(page, proc)
+        
+                    if resultado:
+                        sucesso = True
+                        break
+                    else:
+                        raise RuntimeError("Histórico vazio")
+        
+                except Exception as e:
+                    logging.error(f"[{proc}] Falha na tentativa {tentativa}: {e}")
+        
+                    # backoff progressivo
+                    espera = 2 ** tentativa
+                    logging.info(f"[{proc}] Backoff {espera}s antes da próxima tentativa")
+                    await asyncio.sleep(espera)
+        
+                    # reset seguro de estado
+                    await page.goto("https://sei.saude.gov.br/", timeout=120000)
+                    await page.wait_for_selector("#txtPesquisaRapida")
+        
+            if not sucesso:
+                logging.error(f"[{proc}] FALHA DEFINITIVA após {tentativas} tentativas")
 
 
 if __name__ == "__main__":
