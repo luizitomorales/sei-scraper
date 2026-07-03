@@ -1,27 +1,25 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.egg-info/
-dist/
-build/
-
-#Pasta
-.ova/
-[lixeira]/
-.ipynb_checkpoints/
-
-# Virtualenv
 venv/
-.venv/
-env/
-
-# Dados sensíveis
 STAGE.env
-*.log
-downloads/
-
-# IDE
+google-chrome-stable_current_amd64.deb
+downloads_manifest.json
+downloads_playwright/
+downloads_selenium/
+logs/
+output/
 .vscode/
-.idea/.
+venv/
+*.pyc
+__pycache__/
+*.deb
+
+venv/
+*.pyc
+__pycache__/
+*.deb
+google-chrome-stable_current_amd64.deb
+
+venv/
+*.pyc
+__pycache__/
+*.deb
+google-chrome-stable_current_amd64.deb
